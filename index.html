@@ -1099,7 +1099,6 @@ footer {
       <div class="td-card reveal">
         <div class="td-card-title">⚙️ <span data-i18n="terms_title">Требования к водителю</span></div>
         <ul class="td-list">
-          <li data-i18n="t1">Возраст от 21 года</li>
           <li data-i18n="t2">Водительское удостоверение кат. B</li>
           <li data-i18n="t3">Отсутствие судимостей</li>
           <li data-i18n="t4">Смартфон с интернетом</li>
@@ -1111,7 +1110,7 @@ footer {
         <div class="td-card-title">📄 <span data-i18n="docs_title">Необходимые документы</span></div>
         <ul class="td-list">
           <li data-i18n="d1">Загранпаспорт, ВНЖ или Карта одиденца</li>
-          <li data-i18n="d2">Водительское удостоверение (мин. 3 года)</li>
+          <li data-i18n="d2">Водительское удостоверение</li>
           <li data-i18n="d3">Лицензия таксиста (Preukaz vodiča taxislužby)</li>
           <li data-i18n="d4">Справка о несудимости</li>
           <li data-i18n="d5">Трудовой договор (оформляем официально)</li>
@@ -1142,8 +1141,20 @@ footer {
             <span data-i18n="ct_bike">Велосипед</span>
           </div>
           <div class="courier-transport-item">
-            <span>🛵</span>
+            <span>🛴</span>
             <span data-i18n="ct_scooter">Самокат</span>
+          </div>
+          <div class="courier-transport-item">
+            <span>🏍</span>
+            <span data-i18n="ct_moto">Мотоцикл</span>
+          </div>
+          <div class="courier-transport-item">
+            <span>🛵</span>
+            <span data-i18n="ct_moped">Мопед</span>
+          </div>
+          <div class="courier-transport-item">
+            <span>🚗</span>
+            <span data-i18n="ct_car">Машина</span>
           </div>
         </div>
       </div>
@@ -1302,9 +1313,9 @@ const T = {
     s4_title:"Начинай зарабатывать!",s4_desc:"Выбирай удобный график и начинай получать доход уже с первого дня.",
     steps_cta:"Начать →",
     terms_title:"Требования к водителю",
-    t1:"Возраст от 21 года",t2:"Водительское удостоверение кат. B",t3:"Отсутствие судимостей",t4:"Смартфон с интернетом",t5:"Ответственность и пунктуальность",t6:"Знание города (желательно)",
+    t2:"Водительское удостоверение кат. B",t3:"Отсутствие судимостей",t4:"Смартфон с интернетом",t5:"Ответственность и пунктуальность",t6:"Знание города (желательно)",
     docs_title:"Необходимые документы",
-    d1:"Загранпаспорт, ВНЖ или Карта одиденца",d2:"Водительское удостоверение (мин. 3 года)",d3:"Лицензия таксиста (Preukaz vodiča taxislužby) — помогаем оформить",d4:"Справка о несудимости",d5:"Трудовой договор (оформляем официально)",
+    d1:"Загранпаспорт, ВНЖ или Карта одиденца",d2:"Водительское удостоверение",d3:"Лицензия таксиста (Preukaz vodiča taxislužby) — помогаем оформить",d4:"Справка о несудимости",d5:"Трудовой договор (оформляем официально)",
     docs_help:"Помогаем с оформлением всех документов",
     tag_cars:"Автомобиль",cars_title:"Аренда автомобиля",
     cars_have_title:"У меня есть своё авто",cars_have_desc:"Отлично! Подключаем к платформам, помогаем с документами, обслуживаем в нашем СТО по специальным ценам.",
@@ -1317,7 +1328,7 @@ const T = {
     role_driver:"Водитель такси",role_courier:"Курьер Bolt Food",
     courier_terms_title:"Требования к курьеру",
     ct1:"Возраст от 18 лет",ct2:"Смартфон с интернетом",ct3:"Ответственность и пунктуальность",ct4:"Знание города",
-    ct_foot:"Пешком",ct_bike:"Велосипед",ct_scooter:"Самокат",
+    ct_foot:"Пешком",ct_bike:"Велосипед",ct_scooter:"Самокат",ct_moto:"Мотоцикл",ct_moped:"Мопед",ct_car:"Машина",
     courier_docs_title:"Необходимые документы",
     cd1:"Загранпаспорт, ВНЖ или Карта одиденца",cd2:"Справка о несудимости",cd3:"Трудовой договор (оформляем официально)",
     c_no_license:"Водительские права не нужны!",
@@ -1350,9 +1361,9 @@ const T = {
     s4_title:"Починай заробляти!",s4_desc:"Обирай зручний графік і починай отримувати дохід вже з першого дня.",
     steps_cta:"Почати →",
     terms_title:"Вимоги до водія",
-    t1:"Вік від 21 року",t2:"Водійське посвідчення кат. B",t3:"Відсутність судимостей",t4:"Смартфон з інтернетом",t5:"Відповідальність та пунктуальність",t6:"Знання міста (бажано)",
+    t2:"Водійське посвідчення кат. B",t3:"Відсутність судимостей",t4:"Смартфон з інтернетом",t5:"Відповідальність та пунктуальність",t6:"Знання міста (бажано)",
     docs_title:"Необхідні документи",
-    d1:"Закордонний паспорт, ВНЖ або Карта одиденца",d2:"Водійське посвідчення (мін. 3 роки)",d3:"Ліцензія таксиста (Preukaz vodiča taxislužby) — допомагаємо оформити",d4:"Довідка про несудимість",d5:"Трудовий договір (оформляємо офіційно)",
+    d1:"Закордонний паспорт, ВНЖ або Карта одиденца",d2:"Водійське посвідчення",d3:"Ліцензія таксиста (Preukaz vodiča taxislužby) — допомагаємо оформити",d4:"Довідка про несудимість",d5:"Трудовий договір (оформляємо офіційно)",
     docs_help:"Допомагаємо з оформленням усіх документів",
     tag_cars:"Автомобіль",cars_title:"Оренда автомобіля",
     cars_have_title:"У мене є своє авто",cars_have_desc:"Чудово! Підключаємо до платформ, допомагаємо з документами, обслуговуємо в нашому СТО за спеціальними цінами.",
@@ -1365,7 +1376,7 @@ const T = {
     role_driver:"Водій таксі",role_courier:"Кур'єр Bolt Food",
     courier_terms_title:"Вимоги до кур'єра",
     ct1:"Вік від 18 років",ct2:"Смартфон з інтернетом",ct3:"Відповідальність та пунктуальність",ct4:"Знання міста",
-    ct_foot:"Пішки",ct_bike:"Велосипед",ct_scooter:"Самокат",
+    ct_foot:"Пішки",ct_bike:"Велосипед",ct_scooter:"Самокат",ct_moto:"Мотоцикл",ct_moped:"Мопед",ct_car:"Авто",
     courier_docs_title:"Необхідні документи",
     cd1:"Закордонний паспорт, ВНЖ або Карта одиденца",cd2:"Довідка про несудимість",cd3:"Трудовий договір (оформляємо офіційно)",
     c_no_license:"Водійські права не потрібні!",
@@ -1398,9 +1409,9 @@ const T = {
     s4_title:"Začni zarábať!",s4_desc:"Vyber si vhodný rozvrh a začni zarábať už od prvého dňa.",
     steps_cta:"Začať →",
     terms_title:"Požiadavky na vodiča",
-    t1:"Vek od 21 rokov",t2:"Vodičský preukaz kat. B",t3:"Bezúhonnosť (výpis z registra trestov)",t4:"Smartphone s internetom",t5:"Zodpovednosť a dochvíľnosť",t6:"Znalosť mesta (vítaná)",
+    t2:"Vodičský preukaz kat. B",t3:"Bezúhonnosť (výpis z registra trestov)",t4:"Smartphone s internetom",t5:"Zodpovednosť a dochvíľnosť",t6:"Znalosť mesta (vítaná)",
     docs_title:"Potrebné dokumenty",
-    d1:"Cestovný pas, ВНЖ alebo Karta odídenca",d2:"Vodičský preukaz (min. 3 roky praxe)",d3:"Preukaz vodiča taxislužby — pomáhame vybaviť",d4:"Výpis z registra trestov",d5:"Pracovná zmluva (vybavujeme oficiálne)",
+    d1:"Cestovný pas, ВНЖ alebo Karta odídenca",d2:"Vodičský preukaz",d3:"Preukaz vodiča taxislužby — pomáhame vybaviť",d4:"Výpis z registra trestov",d5:"Pracovná zmluva (vybavujeme oficiálne)",
     docs_help:"Pomáhame s vybavením všetkých dokumentov",
     tag_cars:"Vozidlo",cars_title:"Prenájom automobilu",
     cars_have_title:"Mám vlastné auto",cars_have_desc:"Výborne! Pripájame na platformy, pomáhame s dokumentmi, zabezpečujeme servis za špeciálne ceny.",
@@ -1413,7 +1424,7 @@ const T = {
     role_driver:"Vodič taxislužby",role_courier:"Kuriér Bolt Food",
     courier_terms_title:"Požiadavky na kuriéra",
     ct1:"Vek od 18 rokov",ct2:"Smartphone s internetom",ct3:"Zodpovednosť a dochvíľnosť",ct4:"Znalosť mesta",
-    ct_foot:"Pešo",ct_bike:"Bicykel",ct_scooter:"Kolobežka",
+    ct_foot:"Pešo",ct_bike:"Bicykel",ct_scooter:"Kolobežka",ct_moto:"Motocykel",ct_moped:"Moped",ct_car:"Auto",
     courier_docs_title:"Potrebné dokumenty",
     cd1:"Cestovný pas, ВНЖ alebo Karta odídenca",cd2:"Výpis z registra trestov",cd3:"Pracovná zmluva (vybavujeme oficiálne)",
     c_no_license:"Vodičský preukaz nie je potrebný!",
@@ -1446,9 +1457,9 @@ const T = {
     s4_title:"Start Earning!",s4_desc:"Choose your schedule and start earning from day one.",
     steps_cta:"Start →",
     terms_title:"Driver Requirements",
-    t1:"Age 21+",t2:"Category B driving license",t3:"No criminal record",t4:"Smartphone with internet",t5:"Responsibility and punctuality",t6:"Knowledge of the city (preferred)",
+    t2:"Category B driving license",t3:"No criminal record",t4:"Smartphone with internet",t5:"Responsibility and punctuality",t6:"Knowledge of the city (preferred)",
     docs_title:"Required Documents",
-    d1:"Passport, residence permit or refugee card",d2:"Driving license (min. 3 years)",d3:"Taxi driver license (Preukaz vodiča taxislužby) — we help obtain",d4:"Criminal record certificate",d5:"Employment contract (we handle officially)",
+    d1:"Passport, residence permit or refugee card",d2:"Driving license",d3:"Taxi driver license (Preukaz vodiča taxislužby) — we help obtain",d4:"Criminal record certificate",d5:"Employment contract (we handle officially)",
     docs_help:"We help with all document processing",
     tag_cars:"Vehicle",cars_title:"Car Rental",
     cars_have_title:"I have my own car",cars_have_desc:"Great! We connect you to platforms, help with documents, and service your car at special prices.",
@@ -1461,7 +1472,7 @@ const T = {
     role_driver:"Taxi Driver",role_courier:"Bolt Food Courier",
     courier_terms_title:"Courier Requirements",
     ct1:"Age 18+",ct2:"Smartphone with internet",ct3:"Responsibility and punctuality",ct4:"Knowledge of the city",
-    ct_foot:"On foot",ct_bike:"Bicycle",ct_scooter:"Scooter",
+    ct_foot:"On foot",ct_bike:"Bicycle",ct_scooter:"Scooter",ct_moto:"Motorcycle",ct_moped:"Moped",ct_car:"Car",
     courier_docs_title:"Required Documents",
     cd1:"Passport, residence permit or refugee card",cd2:"Criminal record certificate",cd3:"Employment contract (we handle officially)",
     c_no_license:"No driver's license required!",
