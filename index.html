@@ -578,6 +578,77 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   align-items: center;
   gap: 8px;
 }
+/* ─── Role tabs ─── */
+.role-tabs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+.role-tab {
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: 2px solid rgba(255,107,0,0.3);
+  background: transparent;
+  color: var(--muted);
+  transition: var(--trans);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.role-tab:hover { border-color: var(--primary); color: var(--text); }
+.role-tab.active {
+  background: linear-gradient(135deg, var(--primary), #e55a00);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(255,107,0,0.45);
+}
+.role-content { display: none; }
+.role-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media(max-width: 700px) { .role-content.active { grid-template-columns: 1fr; } }
+/* Courier extras */
+.no-license-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: rgba(52,209,134,0.1);
+  border: 1px solid rgba(52,209,134,0.35);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #34d186;
+}
+.courier-transport {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.courier-transport-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  background: rgba(255,107,0,0.06);
+  border: 1px solid rgba(255,107,0,0.2);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  flex: 1;
+  min-width: 70px;
+  transition: var(--trans);
+}
+.courier-transport-item:hover { border-color: var(--primary); color: var(--text); }
+.courier-transport-item span:first-child { font-size: 1.8rem; }
 
 /* ═══════════════════════════════ CAR RENTAL ════════════════════════════════ */
 #cars { background: var(--bg); }
@@ -1010,7 +1081,21 @@ footer {
 <!-- ═══════════════════════════ TERMS + DOCS ══════════════════════════════ -->
 <section id="termdocs" class="section">
   <div class="container">
-    <div class="termdocs-grid">
+    <div class="tag" data-i18n="tag_termdocs">Условия</div>
+    <h2 class="section-title" data-i18n="termdocs_title">Требования и документы</h2>
+
+    <!-- Role switcher -->
+    <div class="role-tabs">
+      <button class="role-tab active" onclick="setRole('driver')" id="tab-driver">
+        🚗 <span data-i18n="role_driver">Водитель такси</span>
+      </button>
+      <button class="role-tab" onclick="setRole('courier')" id="tab-courier">
+        🛵 <span data-i18n="role_courier">Курьер Bolt Food</span>
+      </button>
+    </div>
+
+    <!-- ── DRIVER ── -->
+    <div id="role-driver-content" class="role-content active">
       <div class="td-card reveal">
         <div class="td-card-title">⚙️ <span data-i18n="terms_title">Требования к водителю</span></div>
         <ul class="td-list">
@@ -1032,6 +1117,47 @@ footer {
           <li data-i18n="d5">Трудовой договор (оформляем официально)</li>
         </ul>
         <div class="docs-help">
+          ✨ <span data-i18n="docs_help">Помогаем с оформлением всех документов</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COURIER ── -->
+    <div id="role-courier-content" class="role-content">
+      <div class="td-card reveal">
+        <div class="td-card-title">⚙️ <span data-i18n="courier_terms_title">Требования к курьеру</span></div>
+        <ul class="td-list">
+          <li data-i18n="ct1">Возраст от 18 лет</li>
+          <li data-i18n="ct2">Смартфон с интернетом</li>
+          <li data-i18n="ct3">Ответственность и пунктуальность</li>
+          <li data-i18n="ct4">Знание города</li>
+        </ul>
+        <div class="courier-transport">
+          <div class="courier-transport-item">
+            <span>🚶</span>
+            <span data-i18n="ct_foot">Пешком</span>
+          </div>
+          <div class="courier-transport-item">
+            <span>🚲</span>
+            <span data-i18n="ct_bike">Велосипед</span>
+          </div>
+          <div class="courier-transport-item">
+            <span>🛵</span>
+            <span data-i18n="ct_scooter">Самокат</span>
+          </div>
+        </div>
+      </div>
+      <div class="td-card reveal">
+        <div class="td-card-title">📄 <span data-i18n="courier_docs_title">Необходимые документы</span></div>
+        <ul class="td-list">
+          <li data-i18n="cd1">Загранпаспорт, ВНЖ или Карта одиденца</li>
+          <li data-i18n="cd2">Справка о несудимости</li>
+          <li data-i18n="cd3">Трудовой договор (оформляем официально)</li>
+        </ul>
+        <div class="no-license-badge">
+          ✓ <span data-i18n="c_no_license">Водительские права не нужны!</span>
+        </div>
+        <div class="docs-help" style="margin-top:12px;">
           ✨ <span data-i18n="docs_help">Помогаем с оформлением всех документов</span>
         </div>
       </div>
@@ -1187,6 +1313,14 @@ const T = {
     tag_ref:"Реферальная программа",ref_title:"Бонус за приведённого друга",
     ref_desc:"Пригласи друга в GTA 777 и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!",
     ref_friends_label:"Друзей приглашу:",ref_bonus_label:"Мой бонус:",ref_cta:"Пригласить друга →",
+    tag_termdocs:"Условия",termdocs_title:"Требования и документы",
+    role_driver:"Водитель такси",role_courier:"Курьер Bolt Food",
+    courier_terms_title:"Требования к курьеру",
+    ct1:"Возраст от 18 лет",ct2:"Смартфон с интернетом",ct3:"Ответственность и пунктуальность",ct4:"Знание города",
+    ct_foot:"Пешком",ct_bike:"Велосипед",ct_scooter:"Самокат",
+    courier_docs_title:"Необходимые документы",
+    cd1:"Загранпаспорт, ВНЖ или Карта одиденца",cd2:"Справка о несудимости",cd3:"Трудовой договор (оформляем официально)",
+    c_no_license:"Водительские права не нужны!",
     tag_contacts:"Связаться",contacts_title:"Контакты",contacts_sub:"Готов начать? Напиши нам в Telegram — ответим быстро.",
     contacts_bot:"Telegram бот",contacts_cities:"Города присутствия",contacts_cta:"Открыть Telegram бот",
     footer_copy:"© 2026 GTA 777. Таксопарк Словакия. Все права защищены.",
@@ -1227,6 +1361,14 @@ const T = {
     tag_ref:"Реферальна програма",ref_title:"Бонус за запрошеного друга",
     ref_desc:"Запроси друга в GTA 777 та отримай 100€ після 4 тижнів його роботи. Без обмежень — запрошуй скільки завгодно!",
     ref_friends_label:"Друзів запрошу:",ref_bonus_label:"Мій бонус:",ref_cta:"Запросити друга →",
+    tag_termdocs:"Умови",termdocs_title:"Вимоги та документи",
+    role_driver:"Водій таксі",role_courier:"Кур'єр Bolt Food",
+    courier_terms_title:"Вимоги до кур'єра",
+    ct1:"Вік від 18 років",ct2:"Смартфон з інтернетом",ct3:"Відповідальність та пунктуальність",ct4:"Знання міста",
+    ct_foot:"Пішки",ct_bike:"Велосипед",ct_scooter:"Самокат",
+    courier_docs_title:"Необхідні документи",
+    cd1:"Закордонний паспорт, ВНЖ або Карта одиденца",cd2:"Довідка про несудимість",cd3:"Трудовий договір (оформляємо офіційно)",
+    c_no_license:"Водійські права не потрібні!",
     tag_contacts:"Зв'язатись",contacts_title:"Контакти",contacts_sub:"Готовий почати? Напиши нам у Telegram — відповімо швидко.",
     contacts_bot:"Telegram бот",contacts_cities:"Міста присутності",contacts_cta:"Відкрити Telegram бот",
     footer_copy:"© 2026 GTA 777. Таксопарк Словаччина. Всі права захищені.",
@@ -1267,6 +1409,14 @@ const T = {
     tag_ref:"Referálny program",ref_title:"Bonus za pozvaného priateľa",
     ref_desc:"Pozvi priateľa do GTA 777 a získaj 100€ po 4 týždňoch jeho práce. Bez obmedzení — pozývaj koľko chceš!",
     ref_friends_label:"Počet priateľov:",ref_bonus_label:"Môj bonus:",ref_cta:"Pozvať priateľa →",
+    tag_termdocs:"Podmienky",termdocs_title:"Požiadavky a dokumenty",
+    role_driver:"Vodič taxislužby",role_courier:"Kuriér Bolt Food",
+    courier_terms_title:"Požiadavky na kuriéra",
+    ct1:"Vek od 18 rokov",ct2:"Smartphone s internetom",ct3:"Zodpovednosť a dochvíľnosť",ct4:"Znalosť mesta",
+    ct_foot:"Pešo",ct_bike:"Bicykel",ct_scooter:"Kolobežka",
+    courier_docs_title:"Potrebné dokumenty",
+    cd1:"Cestovný pas, ВНЖ alebo Karta odídenca",cd2:"Výpis z registra trestov",cd3:"Pracovná zmluva (vybavujeme oficiálne)",
+    c_no_license:"Vodičský preukaz nie je potrebný!",
     tag_contacts:"Kontaktovať",contacts_title:"Kontakty",contacts_sub:"Pripravený začať? Napíš nám na Telegram — odpovieme rýchlo.",
     contacts_bot:"Telegram bot",contacts_cities:"Mestá pôsobenia",contacts_cta:"Otvoriť Telegram bot",
     footer_copy:"© 2026 GTA 777. Taxifleet Slovensko. Všetky práva vyhradené.",
@@ -1307,6 +1457,14 @@ const T = {
     tag_ref:"Referral Program",ref_title:"Friend Referral Bonus",
     ref_desc:"Invite a friend to GTA 777 and earn 100€ after 4 weeks of their work. No limits — invite as many as you want!",
     ref_friends_label:"Friends I'll invite:",ref_bonus_label:"My bonus:",ref_cta:"Invite a friend →",
+    tag_termdocs:"Conditions",termdocs_title:"Requirements & Documents",
+    role_driver:"Taxi Driver",role_courier:"Bolt Food Courier",
+    courier_terms_title:"Courier Requirements",
+    ct1:"Age 18+",ct2:"Smartphone with internet",ct3:"Responsibility and punctuality",ct4:"Knowledge of the city",
+    ct_foot:"On foot",ct_bike:"Bicycle",ct_scooter:"Scooter",
+    courier_docs_title:"Required Documents",
+    cd1:"Passport, residence permit or refugee card",cd2:"Criminal record certificate",cd3:"Employment contract (we handle officially)",
+    c_no_license:"No driver's license required!",
     tag_contacts:"Contact",contacts_title:"Contacts",contacts_sub:"Ready to start? Message us on Telegram — we respond fast.",
     contacts_bot:"Telegram bot",contacts_cities:"Coverage cities",contacts_cta:"Open Telegram bot",
     footer_copy:"© 2026 GTA 777. Taxi Fleet Slovakia. All rights reserved.",
@@ -1341,6 +1499,16 @@ function updateCalc() {
 document.getElementById('daysSlider').addEventListener('input', updateCalc);
 document.getElementById('hoursSlider').addEventListener('input', updateCalc);
 updateCalc();
+
+/* ══════════════════════ ROLE SWITCHER ══════════════════════════════════════ */
+function setRole(role) {
+  document.querySelectorAll('.role-content').forEach(el => {
+    el.classList.toggle('active', el.id === `role-${role}-content`);
+  });
+  document.querySelectorAll('.role-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `tab-${role}`);
+  });
+}
 
 /* ══════════════════════ REFERRAL CALCULATOR ════════════════════════════════ */
 function updateRef() {
