@@ -347,163 +347,133 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 
 /* ═══════════════════════════════ GALLERY ═══════════════════════════════════ */
 .gallery-section {
-  padding: 60px 0;
+  padding: 64px 0;
   background: var(--bg);
   overflow: hidden;
 }
-.gallery-block { margin-bottom: 56px; }
+.gallery-block { margin-bottom: 52px; }
 .gallery-block:last-child { margin-bottom: 0; }
 .gallery-label {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--primary);
-  margin-bottom: 20px;
-  padding-left: 4px;
+  margin-bottom: 18px;
+  padding-left: 2px;
 }
 
-/* Fleet car cards */
+/* Fleet photo cards */
 .fleet-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.fleet-card {
-  border-radius: 16px;
-  padding: 28px 20px 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 16px;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
-.fleet-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
-.bolt-card  { background: linear-gradient(145deg, #0a1f0f, #0d2e16); border-color: rgba(0,199,102,0.25); }
-.uber-card  { background: linear-gradient(145deg, #0f0f0f, #1a1a1a); border-color: rgba(255,255,255,0.15); }
-.food-card  { background: linear-gradient(145deg, #1a0a00, #2a1200); border-color: rgba(255,107,0,0.25); }
-
-.fleet-car-visual { position: relative; width: 140px; height: 70px; }
-.car-body {
+.fleet-photo-card {
+  position: relative;
+  height: 220px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.fleet-photo-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+.fleet-photo-overlay {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.bolt-overlay { background: linear-gradient(160deg, rgba(0,199,102,0.35) 0%, rgba(0,0,0,0.55) 100%); }
+.uber-overlay { background: linear-gradient(160deg, rgba(0,0,0,0.5) 0%, rgba(30,30,30,0.6) 100%); }
+.food-overlay { background: linear-gradient(160deg, rgba(255,107,0,0.3) 0%, rgba(0,0,0,0.6) 100%); }
+.fleet-photo-badge {
   position: absolute;
-  bottom: 18px;
-  left: 10px;
-  right: 10px;
-  height: 44px;
-  border-radius: 8px 8px 4px 4px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.15);
+  top: 14px;
+  left: 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-.bolt-card .car-body  { background: rgba(0,199,102,0.18); border-color: rgba(0,199,102,0.35); }
-.uber-card .car-body  { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
-.food-card .car-body  { background: rgba(255,107,0,0.15); border-color: rgba(255,107,0,0.3); }
-.car-roof {
-  position: absolute;
-  top: -20px;
-  left: 20%;
-  right: 20%;
-  height: 22px;
-  border-radius: 8px 8px 0 0;
-  background: inherit;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-bottom: none;
-}
-.car-windows {
-  position: absolute;
-  top: -18px;
-  left: 22%;
-  right: 22%;
-  height: 16px;
-  border-radius: 5px 5px 0 0;
-  background: rgba(100,200,255,0.15);
-  border: 1px solid rgba(100,200,255,0.2);
-}
-.car-brand-badge {
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: rgba(0,199,102,0.2);
+  border: 1px solid rgba(0,199,102,0.4);
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1rem;
   letter-spacing: 2px;
-  text-align: center;
-  line-height: 1.1;
+  color: #fff;
+  backdrop-filter: blur(8px);
 }
-.bolt-badge { color: #00c766; }
-.uber-badge { color: #fff; }
-.food-badge { color: #ff6b00; }
-.car-wheels { position: absolute; bottom: 0; left: 0; right: 0; }
-.wheel {
-  position: absolute;
-  bottom: 6px;
-  width: 22px;
-  height: 22px;
+.fp-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #555, #111);
-  border: 3px solid #333;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+  flex-shrink: 0;
 }
-.wheel-l { left: 14px; }
-.wheel-r { right: 14px; }
-.fleet-card-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  text-align: center;
-}
-.fleet-platform {
+.fleet-photo-caption {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.65);
   text-transform: uppercase;
 }
-.bolt-color { color: #00c766; }
-.uber-color { color: #e0e0e0; }
-.fleet-model {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-  font-family: 'Rajdhani', sans-serif;
-}
 
-/* City cards */
+/* City photo cards */
 .city-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
-.city-card {
+.city-photo-card {
+  position: relative;
+  height: 200px;
   border-radius: 16px;
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: default;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.35s, box-shadow 0.35s;
+  display: flex;
+  align-items: flex-end;
 }
-.city-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
-.bratislava { background: linear-gradient(160deg, #0d1b3e, #1a0a2e); border-color: rgba(255,204,0,0.2); }
-.zilina     { background: linear-gradient(160deg, #0d2818, #0a1a2e); border-color: rgba(0,199,102,0.15); }
-.kosice     { background: linear-gradient(160deg, #2e0a1a, #1a0a2e); border-color: rgba(255,107,0,0.2); }
-.banska     { background: linear-gradient(160deg, #1a1000, #2e1a00); border-color: rgba(255,204,0,0.15); }
-.city-skyline { height: 80px; display: flex; align-items: flex-end; padding: 0 0 0 0; }
-.city-skyline svg { width: 100%; height: 100%; }
-.city-card-content { padding: 12px 14px 14px; }
+.city-photo-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+.city-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  pointer-events: none;
+}
+.city-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 14px 14px 16px;
+  width: 100%;
+}
 .city-name {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #fff;
   margin-bottom: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 .city-sub {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.55);
   letter-spacing: 0.5px;
 }
-@media (max-width: 768px) {
-  .fleet-cards { grid-template-columns: 1fr; max-width: 260px; margin: 0 auto; }
+@media (max-width: 900px) {
+  .fleet-cards { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
   .city-cards  { grid-template-columns: repeat(2, 1fr); }
+  .fleet-photo-card { height: 180px; }
+}
+@media (max-width: 480px) {
+  .city-cards { grid-template-columns: 1fr; }
+  .city-photo-card { height: 160px; }
 }
 
 /* ═══════════════════════════════ BENEFITS ══════════════════════════════════ */
@@ -1154,56 +1124,26 @@ footer {
     <div class="gallery-block reveal">
       <div class="gallery-label" data-i18n="gallery_fleet">Наш автопарк</div>
       <div class="fleet-cards">
-        <div class="fleet-card bolt-card">
-          <div class="fleet-car-visual">
-            <div class="car-body">
-              <div class="car-roof"></div>
-              <div class="car-windows"></div>
-              <div class="car-brand-badge bolt-badge">BOLT</div>
-            </div>
-            <div class="car-wheels">
-              <div class="wheel wheel-l"></div>
-              <div class="wheel wheel-r"></div>
-            </div>
+        <div class="fleet-photo-card" style="background-image:url('https://images.unsplash.com/photo-1573710459621-bb101783ca0f?w=800&q=80&auto=format&fit=crop')">
+          <div class="fleet-photo-overlay bolt-overlay"></div>
+          <div class="fleet-photo-badge">
+            <span class="fp-dot" style="background:#00c766"></span> BOLT
           </div>
-          <div class="fleet-card-info">
-            <span class="fleet-platform bolt-color">● BOLT</span>
-            <span class="fleet-model">Toyota Corolla</span>
-          </div>
+          <div class="fleet-photo-caption">Toyota Corolla</div>
         </div>
-        <div class="fleet-card uber-card">
-          <div class="fleet-car-visual">
-            <div class="car-body uber-body">
-              <div class="car-roof"></div>
-              <div class="car-windows"></div>
-              <div class="car-brand-badge uber-badge">UBER</div>
-            </div>
-            <div class="car-wheels">
-              <div class="wheel wheel-l"></div>
-              <div class="wheel wheel-r"></div>
-            </div>
+        <div class="fleet-photo-card" style="background-image:url('https://images.unsplash.com/photo-1620227134464-f879b1b93807?w=800&q=80&auto=format&fit=crop')">
+          <div class="fleet-photo-overlay uber-overlay"></div>
+          <div class="fleet-photo-badge" style="background:rgba(0,0,0,0.7);border-color:rgba(255,255,255,0.2)">
+            <span class="fp-dot" style="background:#fff"></span> UBER
           </div>
-          <div class="fleet-card-info">
-            <span class="fleet-platform uber-color">● UBER</span>
-            <span class="fleet-model">Toyota Corolla</span>
-          </div>
+          <div class="fleet-photo-caption">Toyota Corolla</div>
         </div>
-        <div class="fleet-card food-card">
-          <div class="fleet-car-visual">
-            <div class="car-body food-body">
-              <div class="car-roof"></div>
-              <div class="car-windows"></div>
-              <div class="car-brand-badge food-badge">BOLT<br>FOOD</div>
-            </div>
-            <div class="car-wheels">
-              <div class="wheel wheel-l"></div>
-              <div class="wheel wheel-r"></div>
-            </div>
+        <div class="fleet-photo-card" style="background-image:url('https://images.unsplash.com/photo-1573710459621-bb101783ca0f?w=800&q=80&auto=format&fit=crop');filter:hue-rotate(30deg) saturate(1.2)">
+          <div class="fleet-photo-overlay food-overlay"></div>
+          <div class="fleet-photo-badge" style="background:rgba(255,107,0,0.25);border-color:rgba(255,107,0,0.5)">
+            <span class="fp-dot" style="background:#ff6b00"></span> BOLT FOOD
           </div>
-          <div class="fleet-card-info">
-            <span class="fleet-platform bolt-color">● BOLT FOOD</span>
-            <span class="fleet-model">Delivery Van</span>
-          </div>
+          <div class="fleet-photo-caption">Delivery Vehicle</div>
         </div>
       </div>
     </div>
@@ -1211,69 +1151,29 @@ footer {
     <div class="gallery-block reveal">
       <div class="gallery-label" data-i18n="gallery_slovakia">Работаем по всей Словакии</div>
       <div class="city-cards">
-        <div class="city-card bratislava">
-          <div class="city-skyline">
-            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="50" width="20" height="50" fill="rgba(255,255,255,0.15)"/>
-              <rect x="35" y="35" width="15" height="65" fill="rgba(255,255,255,0.2)"/>
-              <rect x="55" y="20" width="25" height="80" fill="rgba(255,255,255,0.25)"/>
-              <polygon points="67,20 67,8 80,8 80,20" fill="rgba(255,204,0,0.6)"/>
-              <rect x="85" y="40" width="18" height="60" fill="rgba(255,255,255,0.18)"/>
-              <rect x="108" y="30" width="22" height="70" fill="rgba(255,255,255,0.22)"/>
-              <rect x="135" y="45" width="16" height="55" fill="rgba(255,255,255,0.15)"/>
-              <rect x="155" y="25" width="20" height="75" fill="rgba(255,255,255,0.2)"/>
-              <line x1="0" y1="100" x2="200" y2="100" stroke="rgba(255,107,0,0.4)" stroke-width="2"/>
-            </svg>
-          </div>
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1620283110809-3ff3adfe057b?w=700&q=80&auto=format&fit=crop')">
+          <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏰 Bratislava</div>
             <div class="city-sub" data-i18n="city_capital">Столица Словакии</div>
           </div>
         </div>
-        <div class="city-card zilina">
-          <div class="city-skyline">
-            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="15" y="55" width="18" height="45" fill="rgba(255,255,255,0.15)"/>
-              <rect x="40" y="40" width="20" height="60" fill="rgba(255,255,255,0.2)"/>
-              <polygon points="50,40 50,25 60,25 60,40" fill="rgba(255,204,0,0.5)"/>
-              <rect x="65" y="30" width="30" height="70" fill="rgba(255,255,255,0.25)"/>
-              <rect x="100" y="50" width="15" height="50" fill="rgba(255,255,255,0.15)"/>
-              <path d="M0,80 Q50,60 100,75 Q150,90 200,70 L200,100 L0,100 Z" fill="rgba(255,107,0,0.08)"/>
-            </svg>
-          </div>
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1756228626280-337f9a5f17b2?w=700&q=80&auto=format&fit=crop')">
+          <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">⛰ Žilina</div>
             <div class="city-sub" data-i18n="city_zilina">Север Словакии</div>
           </div>
         </div>
-        <div class="city-card kosice">
-          <div class="city-skyline">
-            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="45" width="22" height="55" fill="rgba(255,255,255,0.18)"/>
-              <rect x="48" y="25" width="18" height="75" fill="rgba(255,255,255,0.22)"/>
-              <polygon points="57,25 57,10 66,10 66,25" fill="rgba(255,204,0,0.6)"/>
-              <rect x="72" y="35" width="25" height="65" fill="rgba(255,255,255,0.2)"/>
-              <rect x="103" y="20" width="20" height="80" fill="rgba(255,255,255,0.25)"/>
-              <polygon points="113,20 113,5 123,5 123,20" fill="rgba(255,204,0,0.5)"/>
-              <rect x="130" y="48" width="16" height="52" fill="rgba(255,255,255,0.15)"/>
-            </svg>
-          </div>
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1738686001611-39b03de57797?w=700&q=80&auto=format&fit=crop')">
+          <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏛 Košice</div>
             <div class="city-sub" data-i18n="city_kosice">Восток Словакии</div>
           </div>
         </div>
-        <div class="city-card banska">
-          <div class="city-skyline">
-            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0,80 Q30,50 60,65 Q90,80 120,60 Q150,40 180,55 L200,50 L200,100 L0,100 Z" fill="rgba(255,255,255,0.08)"/>
-              <rect x="30" y="50" width="16" height="50" fill="rgba(255,255,255,0.2)"/>
-              <rect x="55" y="35" width="20" height="65" fill="rgba(255,255,255,0.25)"/>
-              <rect x="82" y="45" width="14" height="55" fill="rgba(255,255,255,0.18)"/>
-              <rect x="105" y="38" width="22" height="62" fill="rgba(255,255,255,0.22)"/>
-              <polygon points="116,38 116,22 127,22 127,38" fill="rgba(255,204,0,0.55)"/>
-            </svg>
-          </div>
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1694720915560-da38521f98ea?w=700&q=80&auto=format&fit=crop')">
+          <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏔 Banská Bystrica</div>
             <div class="city-sub" data-i18n="city_bb">Центр Словакии</div>
@@ -1627,7 +1527,7 @@ const T = {
     b3_title:"Выплаты каждый понедельник",b3_desc:"Стабильно. Без задержек. Каждую неделю на твой счёт.",
     b4_title:"Аренда автомобиля",b4_desc:"Нет своего авто? Не проблема — арендуй у нас на выгодных условиях.",
     b5_title:"Собственное СТО",b5_desc:"Быстрое обслуживание и ремонт твоего автомобиля по сниженным ценам.",
-    b6_title:"Бонус 100€ за друга",b6_desc:"Пригласи друга — получи 100€ после 4 недель его работы.",
+    b6_title:"Бонус 100€ за друга",b6_desc:"Пригласи друга — получи 100€ бонус на свой счёт.",
     b7_title:"Вся Словакия",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov и другие города.",
     b8_title:"Поддержка 24/7",b8_desc:"Наша команда всегда на связи. Решаем любые вопросы.",
     tag_calc:"Заработок",calc_title:"Калькулятор дохода",calc_days_label:"Дней в неделю",calc_hours_label:"Часов в день",
@@ -1649,7 +1549,7 @@ const T = {
     cars_no_title:"У меня нет авто",cars_no_desc:"Предлагаем аренду современных автомобилей на выгодных условиях. Начни зарабатывать без первоначальных вложений.",
     cars_cta:"Узнать об аренде →",
     tag_ref:"Реферальная программа",ref_title:"Бонус за приведённого друга",
-    ref_desc:"Пригласи друга в Trojan Fleet и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!",
+    ref_desc:"Пригласи друга в Trojan Fleet и получи 100€ бонус на свой счёт. Без ограничений — приглашай сколько угодно!",
     ref_friends_label:"Друзей приглашу:",ref_bonus_label:"Мой бонус:",ref_cta:"Пригласить друга →",
     tag_termdocs:"Условия",termdocs_title:"Требования и документы",
     role_driver:"Водитель такси",role_courier:"Курьер Bolt Food",
@@ -1677,7 +1577,7 @@ const T = {
     b3_title:"Виплати щопонеділка",b3_desc:"Стабільно. Без затримок. Щотижня на твій рахунок.",
     b4_title:"Оренда автомобіля",b4_desc:"Немає свого авто? Не проблема — орендуй у нас на вигідних умовах.",
     b5_title:"Власне СТО",b5_desc:"Швидке обслуговування та ремонт твого автомобіля за зниженими цінами.",
-    b6_title:"Бонус 100€ за друга",b6_desc:"Запроси друга — отримай 100€ після 4 тижнів його роботи.",
+    b6_title:"Бонус 100€ за друга",b6_desc:"Запроси друга — отримай 100€ бонус на свій рахунок.",
     b7_title:"Вся Словаччина",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov та інші міста.",
     b8_title:"Підтримка 24/7",b8_desc:"Наша команда завжди на зв'язку. Вирішуємо будь-які питання.",
     tag_calc:"Заробіток",calc_title:"Калькулятор доходу",calc_days_label:"Днів на тиждень",calc_hours_label:"Годин на день",
@@ -1699,7 +1599,7 @@ const T = {
     cars_no_title:"У мене немає авто",cars_no_desc:"Пропонуємо оренду сучасних автомобілів на вигідних умовах. Починай заробляти без початкових вкладень.",
     cars_cta:"Дізнатись про оренду →",
     tag_ref:"Реферальна програма",ref_title:"Бонус за запрошеного друга",
-    ref_desc:"Запроси друга в Trojan Fleet та отримай 100€ після 4 тижнів його роботи. Без обмежень — запрошуй скільки завгодно!",
+    ref_desc:"Запроси друга в Trojan Fleet та отримай 100€ бонус на свій рахунок. Без обмежень — запрошуй скільки завгодно!",
     ref_friends_label:"Друзів запрошу:",ref_bonus_label:"Мій бонус:",ref_cta:"Запросити друга →",
     tag_termdocs:"Умови",termdocs_title:"Вимоги та документи",
     role_driver:"Водій таксі",role_courier:"Кур'єр Bolt Food",
@@ -1727,7 +1627,7 @@ const T = {
     b3_title:"Výplaty každý pondelok",b3_desc:"Stabilne. Bez oneskorení. Každý týždeň na tvoj účet.",
     b4_title:"Prenájom automobilu",b4_desc:"Nemáš vlastné auto? Nie je problém — prenajmi si u nás za výhodných podmienok.",
     b5_title:"Vlastný autoservis",b5_desc:"Rýchly servis a oprava tvojho automobilu za znížené ceny.",
-    b6_title:"Bonus 100€ za priateľa",b6_desc:"Pozvi priateľa — získaj 100€ po 4 týždňoch jeho práce.",
+    b6_title:"Bonus 100€ za priateľa",b6_desc:"Pozvi priateľa — získaj 100€ bonus na svoj účet.",
     b7_title:"Celé Slovensko",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov a ďalšie mestá.",
     b8_title:"Podpora 24/7",b8_desc:"Náš tím je vždy k dispozícii. Riešime akékoľvek otázky.",
     tag_calc:"Zárobky",calc_title:"Kalkulačka príjmu",calc_days_label:"Dní za týždeň",calc_hours_label:"Hodín za deň",
@@ -1749,7 +1649,7 @@ const T = {
     cars_no_title:"Nemám auto",cars_no_desc:"Ponúkame prenájom moderných automobilov za výhodných podmienok. Začni zarábať bez počiatočnej investície.",
     cars_cta:"Zistiť o prenájme →",
     tag_ref:"Referálny program",ref_title:"Bonus za pozvaného priateľa",
-    ref_desc:"Pozvi priateľa do Trojan Fleet a získaj 100€ po 4 týždňoch jeho práce. Bez obmedzení — pozývaj koľko chceš!",
+    ref_desc:"Pozvi priateľa do Trojan Fleet a získaj 100€ bonus na svoj účet. Bez obmedzení — pozývaj koľko chceš!",
     ref_friends_label:"Počet priateľov:",ref_bonus_label:"Môj bonus:",ref_cta:"Pozvať priateľa →",
     tag_termdocs:"Podmienky",termdocs_title:"Požiadavky a dokumenty",
     role_driver:"Vodič taxislužby",role_courier:"Kuriér Bolt Food",
@@ -1777,7 +1677,7 @@ const T = {
     b3_title:"Payouts Every Monday",b3_desc:"Stable. No delays. Every week to your account.",
     b4_title:"Car Rental",b4_desc:"No car? No problem — rent from us at great rates.",
     b5_title:"Own Auto Workshop",b5_desc:"Fast maintenance and repair of your car at discounted prices.",
-    b6_title:"100€ Referral Bonus",b6_desc:"Invite a friend — earn 100€ after 4 weeks of their work.",
+    b6_title:"100€ Referral Bonus",b6_desc:"Invite a friend — earn 100€ bonus credited to your account.",
     b7_title:"All of Slovakia",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov and other cities.",
     b8_title:"24/7 Support",b8_desc:"Our team is always available. We solve any issues.",
     tag_calc:"Earnings",calc_title:"Income Calculator",calc_days_label:"Days per week",calc_hours_label:"Hours per day",
@@ -1799,7 +1699,7 @@ const T = {
     cars_no_title:"I don't have a car",cars_no_desc:"We offer rental of modern vehicles at great rates. Start earning without upfront investment.",
     cars_cta:"Learn about rental →",
     tag_ref:"Referral Program",ref_title:"Friend Referral Bonus",
-    ref_desc:"Invite a friend to Trojan Fleet and earn 100€ after 4 weeks of their work. No limits — invite as many as you want!",
+    ref_desc:"Invite a friend to Trojan Fleet and earn 100€ bonus credited to your account. No limits — invite as many as you want!",
     ref_friends_label:"Friends I'll invite:",ref_bonus_label:"My bonus:",ref_cta:"Invite a friend →",
     tag_termdocs:"Conditions",termdocs_title:"Requirements & Documents",
     role_driver:"Taxi Driver",role_courier:"Bolt Food Courier",
