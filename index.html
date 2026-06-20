@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GTA 777 — таксопарк Словакия. Работа водителем Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник.">
-<title>GTA 777 — Taxi Fleet Slovakia | Bolt & Uber</title>
+<meta name="description" content="Trojan Fleet — таксопарк Словакия. Крупнейшее сообщество водителей. Работа на Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник.">
+<title>Trojan Fleet — Taxi Fleet Slovakia | Bolt & Uber</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -252,6 +252,15 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
   animation: logo-flicker 8s ease-in-out infinite;
   display: block;
 }
+.hero-logo-2 {
+  color: var(--primary);
+  -webkit-text-stroke: 3px var(--accent);
+  text-shadow:
+    4px 4px 0 var(--accent),
+    8px 8px 0 rgba(255,204,0,0.3),
+    0 0 60px rgba(255,107,0,0.7),
+    0 0 120px rgba(255,107,0,0.3);
+}
 @keyframes logo-flicker {
   0%, 93%, 95%, 97%, 100% { opacity: 1; }
   94%, 96%                 { opacity: 0.92; text-shadow: 4px 4px 0 var(--primary), 0 0 30px rgba(255,204,0,0.9), 0 0 60px rgba(255,107,0,0.6); }
@@ -291,6 +300,24 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
   line-height: 1;
 }
 .hero-stat-lbl { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+.community-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg, rgba(255,204,0,0.12), rgba(255,107,0,0.12));
+  border: 1px solid rgba(255,204,0,0.4);
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  box-shadow: 0 0 30px rgba(255,204,0,0.15);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
 .scroll-indicator {
   position: absolute;
   bottom: 32px;
@@ -316,6 +343,167 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ═══════════════════════════════ GALLERY ═══════════════════════════════════ */
+.gallery-section {
+  padding: 60px 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+.gallery-block { margin-bottom: 56px; }
+.gallery-block:last-child { margin-bottom: 0; }
+.gallery-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 20px;
+  padding-left: 4px;
+}
+
+/* Fleet car cards */
+.fleet-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.fleet-card {
+  border-radius: 16px;
+  padding: 28px 20px 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.fleet-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+.bolt-card  { background: linear-gradient(145deg, #0a1f0f, #0d2e16); border-color: rgba(0,199,102,0.25); }
+.uber-card  { background: linear-gradient(145deg, #0f0f0f, #1a1a1a); border-color: rgba(255,255,255,0.15); }
+.food-card  { background: linear-gradient(145deg, #1a0a00, #2a1200); border-color: rgba(255,107,0,0.25); }
+
+.fleet-car-visual { position: relative; width: 140px; height: 70px; }
+.car-body {
+  position: absolute;
+  bottom: 18px;
+  left: 10px;
+  right: 10px;
+  height: 44px;
+  border-radius: 8px 8px 4px 4px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bolt-card .car-body  { background: rgba(0,199,102,0.18); border-color: rgba(0,199,102,0.35); }
+.uber-card .car-body  { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+.food-card .car-body  { background: rgba(255,107,0,0.15); border-color: rgba(255,107,0,0.3); }
+.car-roof {
+  position: absolute;
+  top: -20px;
+  left: 20%;
+  right: 20%;
+  height: 22px;
+  border-radius: 8px 8px 0 0;
+  background: inherit;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+}
+.car-windows {
+  position: absolute;
+  top: -18px;
+  left: 22%;
+  right: 22%;
+  height: 16px;
+  border-radius: 5px 5px 0 0;
+  background: rgba(100,200,255,0.15);
+  border: 1px solid rgba(100,200,255,0.2);
+}
+.car-brand-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.1;
+}
+.bolt-badge { color: #00c766; }
+.uber-badge { color: #fff; }
+.food-badge { color: #ff6b00; }
+.car-wheels { position: absolute; bottom: 0; left: 0; right: 0; }
+.wheel {
+  position: absolute;
+  bottom: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #111);
+  border: 3px solid #333;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+}
+.wheel-l { left: 14px; }
+.wheel-r { right: 14px; }
+.fleet-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.fleet-platform {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.bolt-color { color: #00c766; }
+.uber-color { color: #e0e0e0; }
+.fleet-model {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* City cards */
+.city-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.city-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.city-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+.bratislava { background: linear-gradient(160deg, #0d1b3e, #1a0a2e); border-color: rgba(255,204,0,0.2); }
+.zilina     { background: linear-gradient(160deg, #0d2818, #0a1a2e); border-color: rgba(0,199,102,0.15); }
+.kosice     { background: linear-gradient(160deg, #2e0a1a, #1a0a2e); border-color: rgba(255,107,0,0.2); }
+.banska     { background: linear-gradient(160deg, #1a1000, #2e1a00); border-color: rgba(255,204,0,0.15); }
+.city-skyline { height: 80px; display: flex; align-items: flex-end; padding: 0 0 0 0; }
+.city-skyline svg { width: 100%; height: 100%; }
+.city-card-content { padding: 12px 14px 14px; }
+.city-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.city-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+}
+@media (max-width: 768px) {
+  .fleet-cards { grid-template-columns: 1fr; max-width: 260px; margin: 0 auto; }
+  .city-cards  { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ═══════════════════════════════ BENEFITS ══════════════════════════════════ */
@@ -872,7 +1060,7 @@ footer {
 <!-- ═══════════════════════════ HEADER ════════════════════════════════════ -->
 <header>
   <div class="container header-inner">
-    <div class="logo">GTA 777</div>
+    <div class="logo">Trojan Fleet</div>
     <nav>
       <a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
       <a href="#termdocs"   data-i18n="nav_terms">Условия</a>
@@ -924,7 +1112,7 @@ footer {
       <span>🏎</span>
       <span data-i18n="hero_badge">Таксопарк · Словакия</span>
     </div>
-    <span class="hero-logo">GTA 777</span>
+    <span class="hero-logo">TROJAN<br><span class="hero-logo-2">FLEET</span></span>
     <div class="hero-tagline reveal" data-i18n="hero_tagline">Работай на своих условиях</div>
     <div class="hero-sub reveal">
       <span data-i18n="hero_sub">Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник</span>
@@ -934,6 +1122,9 @@ footer {
         🚖 <span data-i18n="hero_cta">Начать работу →</span>
       </a>
       <a href="#calculator" class="btn btn-outline" data-i18n="nav_calc">Калькулятор</a>
+    </div>
+    <div class="community-banner reveal">
+      🏆 <span data-i18n="stat_community">Крупнейшее сообщество водителей в Словакии</span>
     </div>
     <div class="hero-stats reveal">
       <div>
@@ -957,11 +1148,147 @@ footer {
   <div class="scroll-indicator" data-i18n="hero_scroll">Узнать больше</div>
 </section>
 
+<!-- ═══════════════════════════ FLEET GALLERY ═════════════════════════════ -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="gallery-block reveal">
+      <div class="gallery-label" data-i18n="gallery_fleet">Наш автопарк</div>
+      <div class="fleet-cards">
+        <div class="fleet-card bolt-card">
+          <div class="fleet-car-visual">
+            <div class="car-body">
+              <div class="car-roof"></div>
+              <div class="car-windows"></div>
+              <div class="car-brand-badge bolt-badge">BOLT</div>
+            </div>
+            <div class="car-wheels">
+              <div class="wheel wheel-l"></div>
+              <div class="wheel wheel-r"></div>
+            </div>
+          </div>
+          <div class="fleet-card-info">
+            <span class="fleet-platform bolt-color">● BOLT</span>
+            <span class="fleet-model">Toyota Corolla</span>
+          </div>
+        </div>
+        <div class="fleet-card uber-card">
+          <div class="fleet-car-visual">
+            <div class="car-body uber-body">
+              <div class="car-roof"></div>
+              <div class="car-windows"></div>
+              <div class="car-brand-badge uber-badge">UBER</div>
+            </div>
+            <div class="car-wheels">
+              <div class="wheel wheel-l"></div>
+              <div class="wheel wheel-r"></div>
+            </div>
+          </div>
+          <div class="fleet-card-info">
+            <span class="fleet-platform uber-color">● UBER</span>
+            <span class="fleet-model">Toyota Corolla</span>
+          </div>
+        </div>
+        <div class="fleet-card food-card">
+          <div class="fleet-car-visual">
+            <div class="car-body food-body">
+              <div class="car-roof"></div>
+              <div class="car-windows"></div>
+              <div class="car-brand-badge food-badge">BOLT<br>FOOD</div>
+            </div>
+            <div class="car-wheels">
+              <div class="wheel wheel-l"></div>
+              <div class="wheel wheel-r"></div>
+            </div>
+          </div>
+          <div class="fleet-card-info">
+            <span class="fleet-platform bolt-color">● BOLT FOOD</span>
+            <span class="fleet-model">Delivery Van</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-block reveal">
+      <div class="gallery-label" data-i18n="gallery_slovakia">Работаем по всей Словакии</div>
+      <div class="city-cards">
+        <div class="city-card bratislava">
+          <div class="city-skyline">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="50" width="20" height="50" fill="rgba(255,255,255,0.15)"/>
+              <rect x="35" y="35" width="15" height="65" fill="rgba(255,255,255,0.2)"/>
+              <rect x="55" y="20" width="25" height="80" fill="rgba(255,255,255,0.25)"/>
+              <polygon points="67,20 67,8 80,8 80,20" fill="rgba(255,204,0,0.6)"/>
+              <rect x="85" y="40" width="18" height="60" fill="rgba(255,255,255,0.18)"/>
+              <rect x="108" y="30" width="22" height="70" fill="rgba(255,255,255,0.22)"/>
+              <rect x="135" y="45" width="16" height="55" fill="rgba(255,255,255,0.15)"/>
+              <rect x="155" y="25" width="20" height="75" fill="rgba(255,255,255,0.2)"/>
+              <line x1="0" y1="100" x2="200" y2="100" stroke="rgba(255,107,0,0.4)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="city-card-content">
+            <div class="city-name">🏰 Bratislava</div>
+            <div class="city-sub" data-i18n="city_capital">Столица Словакии</div>
+          </div>
+        </div>
+        <div class="city-card zilina">
+          <div class="city-skyline">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="15" y="55" width="18" height="45" fill="rgba(255,255,255,0.15)"/>
+              <rect x="40" y="40" width="20" height="60" fill="rgba(255,255,255,0.2)"/>
+              <polygon points="50,40 50,25 60,25 60,40" fill="rgba(255,204,0,0.5)"/>
+              <rect x="65" y="30" width="30" height="70" fill="rgba(255,255,255,0.25)"/>
+              <rect x="100" y="50" width="15" height="50" fill="rgba(255,255,255,0.15)"/>
+              <path d="M0,80 Q50,60 100,75 Q150,90 200,70 L200,100 L0,100 Z" fill="rgba(255,107,0,0.08)"/>
+            </svg>
+          </div>
+          <div class="city-card-content">
+            <div class="city-name">⛰ Žilina</div>
+            <div class="city-sub" data-i18n="city_zilina">Север Словакии</div>
+          </div>
+        </div>
+        <div class="city-card kosice">
+          <div class="city-skyline">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="45" width="22" height="55" fill="rgba(255,255,255,0.18)"/>
+              <rect x="48" y="25" width="18" height="75" fill="rgba(255,255,255,0.22)"/>
+              <polygon points="57,25 57,10 66,10 66,25" fill="rgba(255,204,0,0.6)"/>
+              <rect x="72" y="35" width="25" height="65" fill="rgba(255,255,255,0.2)"/>
+              <rect x="103" y="20" width="20" height="80" fill="rgba(255,255,255,0.25)"/>
+              <polygon points="113,20 113,5 123,5 123,20" fill="rgba(255,204,0,0.5)"/>
+              <rect x="130" y="48" width="16" height="52" fill="rgba(255,255,255,0.15)"/>
+            </svg>
+          </div>
+          <div class="city-card-content">
+            <div class="city-name">🏛 Košice</div>
+            <div class="city-sub" data-i18n="city_kosice">Восток Словакии</div>
+          </div>
+        </div>
+        <div class="city-card banska">
+          <div class="city-skyline">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0,80 Q30,50 60,65 Q90,80 120,60 Q150,40 180,55 L200,50 L200,100 L0,100 Z" fill="rgba(255,255,255,0.08)"/>
+              <rect x="30" y="50" width="16" height="50" fill="rgba(255,255,255,0.2)"/>
+              <rect x="55" y="35" width="20" height="65" fill="rgba(255,255,255,0.25)"/>
+              <rect x="82" y="45" width="14" height="55" fill="rgba(255,255,255,0.18)"/>
+              <rect x="105" y="38" width="22" height="62" fill="rgba(255,255,255,0.22)"/>
+              <polygon points="116,38 116,22 127,22 127,38" fill="rgba(255,204,0,0.55)"/>
+            </svg>
+          </div>
+          <div class="city-card-content">
+            <div class="city-name">🏔 Banská Bystrica</div>
+            <div class="city-sub" data-i18n="city_bb">Центр Словакии</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════ BENEFITS ══════════════════════════════════ -->
 <section id="benefits" class="section">
   <div class="container">
     <div class="tag" data-i18n="tag_benefits">Преимущества</div>
-    <h2 class="section-title" data-i18n="benefits_title">Почему GTA 777?</h2>
+    <h2 class="section-title" data-i18n="benefits_title">Почему Trojan Fleet?</h2>
     <div class="benefits-grid">
       <div class="benefit-card reveal reveal-d1">
         <span class="benefit-icon">💰</span>
@@ -1205,7 +1532,7 @@ footer {
       <div class="tag" data-i18n="tag_ref">Реферальная программа</div>
       <h2 class="section-title" data-i18n="ref_title">Бонус за приведённого друга</h2>
       <span class="ref-badge-big reveal">100€</span>
-      <p class="ref-desc reveal" data-i18n="ref_desc">Пригласи друга в GTA 777 и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!</p>
+      <p class="ref-desc reveal" data-i18n="ref_desc">Пригласи друга в Trojan Fleet и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!</p>
 
       <div class="ref-calc reveal">
         <div class="ref-calc-item">
@@ -1267,8 +1594,8 @@ footer {
 <!-- ═══════════════════════════ FOOTER ════════════════════════════════════ -->
 <footer>
   <div class="container footer-inner">
-    <div class="footer-logo">GTA 777</div>
-    <div class="footer-copy" data-i18n="footer_copy">© 2026 GTA 777. Таксопарк Словакия.</div>
+    <div class="footer-logo">Trojan Fleet</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 Trojan Fleet. Таксопарк Словакия.</div>
     <div class="footer-langs">
       <button class="lang-btn active" onclick="setLang('ru')">RU</button>
       <button class="lang-btn"        onclick="setLang('ua')">UA</button>
@@ -1293,8 +1620,8 @@ const T = {
     hero_badge:"Таксопарк · Словакия",hero_tagline:"Работай на своих условиях",
     hero_sub:"Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник",
     hero_cta:"Начать работу →",hero_scroll:"Узнать больше",
-    stat_commission:"Комиссия",stat_bonus:"Бонус за друга",stat_cities:"Городов Словакии",stat_support:"Поддержка",
-    tag_benefits:"Преимущества",benefits_title:"Почему GTA 777?",
+    stat_commission:"Комиссия",stat_bonus:"Бонус за друга",stat_cities:"Городов Словакии",stat_support:"Поддержка",stat_community:"Крупнейшее сообщество водителей в Словакии",
+    tag_benefits:"Преимущества",benefits_title:"Почему Trojan Fleet?",
     b1_title:"Комиссия 8%",b1_desc:"Одна из самых низких на рынке. Индивидуальные условия для лучших водителей.",
     b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Работай на всех ведущих платформах одновременно.",
     b3_title:"Выплаты каждый понедельник",b3_desc:"Стабильно. Без задержек. Каждую неделю на твой счёт.",
@@ -1322,7 +1649,7 @@ const T = {
     cars_no_title:"У меня нет авто",cars_no_desc:"Предлагаем аренду современных автомобилей на выгодных условиях. Начни зарабатывать без первоначальных вложений.",
     cars_cta:"Узнать об аренде →",
     tag_ref:"Реферальная программа",ref_title:"Бонус за приведённого друга",
-    ref_desc:"Пригласи друга в GTA 777 и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!",
+    ref_desc:"Пригласи друга в Trojan Fleet и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!",
     ref_friends_label:"Друзей приглашу:",ref_bonus_label:"Мой бонус:",ref_cta:"Пригласить друга →",
     tag_termdocs:"Условия",termdocs_title:"Требования и документы",
     role_driver:"Водитель такси",role_courier:"Курьер Bolt Food",
@@ -1334,15 +1661,17 @@ const T = {
     c_no_license:"Водительские права не нужны!",
     tag_contacts:"Связаться",contacts_title:"Контакты",contacts_sub:"Готов начать? Напиши нам в Telegram — ответим быстро.",
     contacts_bot:"Telegram бот",contacts_cities:"Города присутствия",contacts_cta:"Открыть Telegram бот",
-    footer_copy:"© 2026 GTA 777. Таксопарк Словакия. Все права защищены.",
+    gallery_fleet:"Наш автопарк",gallery_slovakia:"Работаем по всей Словакии",
+    city_capital:"Столица Словакии",city_zilina:"Север Словакии",city_kosice:"Восток Словакии",city_bb:"Центр Словакии",
+    footer_copy:"© 2026 Trojan Fleet. Таксопарк Словакия. Все права защищены.",
   },
   ua: {
     nav_calc:"Калькулятор",nav_terms:"Умови",nav_docs:"Документи",nav_cars:"Оренда авто",nav_contacts:"Контакти",nav_start:"Почати роботу",
     hero_badge:"Таксопарк · Словаччина",hero_tagline:"Працюй на своїх умовах",
     hero_sub:"Bolt • Uber • Bolt Food | Комісія <strong>8%</strong> | Виплати щопонеділка",
     hero_cta:"Почати роботу →",hero_scroll:"Дізнатись більше",
-    stat_commission:"Комісія",stat_bonus:"Бонус за друга",stat_cities:"Міст Словаччини",stat_support:"Підтримка",
-    tag_benefits:"Переваги",benefits_title:"Чому GTA 777?",
+    stat_commission:"Комісія",stat_bonus:"Бонус за друга",stat_cities:"Міст Словаччини",stat_support:"Підтримка",stat_community:"Найбільша спільнота водіїв у Словаччині",
+    tag_benefits:"Переваги",benefits_title:"Чому Trojan Fleet?",
     b1_title:"Комісія 8%",b1_desc:"Одна з найнижчих на ринку. Індивідуальні умови для найкращих водіїв.",
     b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Працюй на всіх провідних платформах одночасно.",
     b3_title:"Виплати щопонеділка",b3_desc:"Стабільно. Без затримок. Щотижня на твій рахунок.",
@@ -1370,7 +1699,7 @@ const T = {
     cars_no_title:"У мене немає авто",cars_no_desc:"Пропонуємо оренду сучасних автомобілів на вигідних умовах. Починай заробляти без початкових вкладень.",
     cars_cta:"Дізнатись про оренду →",
     tag_ref:"Реферальна програма",ref_title:"Бонус за запрошеного друга",
-    ref_desc:"Запроси друга в GTA 777 та отримай 100€ після 4 тижнів його роботи. Без обмежень — запрошуй скільки завгодно!",
+    ref_desc:"Запроси друга в Trojan Fleet та отримай 100€ після 4 тижнів його роботи. Без обмежень — запрошуй скільки завгодно!",
     ref_friends_label:"Друзів запрошу:",ref_bonus_label:"Мій бонус:",ref_cta:"Запросити друга →",
     tag_termdocs:"Умови",termdocs_title:"Вимоги та документи",
     role_driver:"Водій таксі",role_courier:"Кур'єр Bolt Food",
@@ -1382,15 +1711,17 @@ const T = {
     c_no_license:"Водійські права не потрібні!",
     tag_contacts:"Зв'язатись",contacts_title:"Контакти",contacts_sub:"Готовий почати? Напиши нам у Telegram — відповімо швидко.",
     contacts_bot:"Telegram бот",contacts_cities:"Міста присутності",contacts_cta:"Відкрити Telegram бот",
-    footer_copy:"© 2026 GTA 777. Таксопарк Словаччина. Всі права захищені.",
+    gallery_fleet:"Наш автопарк",gallery_slovakia:"Працюємо по всій Словаччині",
+    city_capital:"Столиця Словаччини",city_zilina:"Північ Словаччини",city_kosice:"Схід Словаччини",city_bb:"Центр Словаччини",
+    footer_copy:"© 2026 Trojan Fleet. Таксопарк Словаччина. Всі права захищені.",
   },
   sk: {
     nav_calc:"Kalkulačka",nav_terms:"Podmienky",nav_docs:"Dokumenty",nav_cars:"Prenájom auta",nav_contacts:"Kontakty",nav_start:"Začať pracovať",
     hero_badge:"Taxifleet · Slovensko",hero_tagline:"Pracuj za vlastných podmienok",
     hero_sub:"Bolt • Uber • Bolt Food | Provízia <strong>8%</strong> | Výplaty každý pondelok",
     hero_cta:"Začať pracovať →",hero_scroll:"Zistiť viac",
-    stat_commission:"Provízia",stat_bonus:"Bonus za priateľa",stat_cities:"Miest Slovenska",stat_support:"Podpora",
-    tag_benefits:"Výhody",benefits_title:"Prečo GTA 777?",
+    stat_commission:"Provízia",stat_bonus:"Bonus za priateľa",stat_cities:"Miest Slovenska",stat_support:"Podpora",stat_community:"Najväčšia komunita vodičov na Slovensku",
+    tag_benefits:"Výhody",benefits_title:"Prečo Trojan Fleet?",
     b1_title:"Provízia 8%",b1_desc:"Jedna z najnižších na trhu. Individuálne podmienky pre najlepších vodičov.",
     b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Pracuj na všetkých vedúcich platformách súčasne.",
     b3_title:"Výplaty každý pondelok",b3_desc:"Stabilne. Bez oneskorení. Každý týždeň na tvoj účet.",
@@ -1418,7 +1749,7 @@ const T = {
     cars_no_title:"Nemám auto",cars_no_desc:"Ponúkame prenájom moderných automobilov za výhodných podmienok. Začni zarábať bez počiatočnej investície.",
     cars_cta:"Zistiť o prenájme →",
     tag_ref:"Referálny program",ref_title:"Bonus za pozvaného priateľa",
-    ref_desc:"Pozvi priateľa do GTA 777 a získaj 100€ po 4 týždňoch jeho práce. Bez obmedzení — pozývaj koľko chceš!",
+    ref_desc:"Pozvi priateľa do Trojan Fleet a získaj 100€ po 4 týždňoch jeho práce. Bez obmedzení — pozývaj koľko chceš!",
     ref_friends_label:"Počet priateľov:",ref_bonus_label:"Môj bonus:",ref_cta:"Pozvať priateľa →",
     tag_termdocs:"Podmienky",termdocs_title:"Požiadavky a dokumenty",
     role_driver:"Vodič taxislužby",role_courier:"Kuriér Bolt Food",
@@ -1430,15 +1761,17 @@ const T = {
     c_no_license:"Vodičský preukaz nie je potrebný!",
     tag_contacts:"Kontaktovať",contacts_title:"Kontakty",contacts_sub:"Pripravený začať? Napíš nám na Telegram — odpovieme rýchlo.",
     contacts_bot:"Telegram bot",contacts_cities:"Mestá pôsobenia",contacts_cta:"Otvoriť Telegram bot",
-    footer_copy:"© 2026 GTA 777. Taxifleet Slovensko. Všetky práva vyhradené.",
+    gallery_fleet:"Náš vozový park",gallery_slovakia:"Pôsobíme po celom Slovensku",
+    city_capital:"Hlavné mesto Slovenska",city_zilina:"Sever Slovenska",city_kosice:"Východ Slovenska",city_bb:"Stred Slovenska",
+    footer_copy:"© 2026 Trojan Fleet. Taxifleet Slovensko. Všetky práva vyhradené.",
   },
   en: {
     nav_calc:"Calculator",nav_terms:"Terms",nav_docs:"Documents",nav_cars:"Car Rental",nav_contacts:"Contacts",nav_start:"Start Working",
     hero_badge:"Taxi Fleet · Slovakia",hero_tagline:"Work on your own terms",
     hero_sub:"Bolt • Uber • Bolt Food | <strong>8%</strong> Commission | Payouts Every Monday",
     hero_cta:"Start Working →",hero_scroll:"Learn more",
-    stat_commission:"Commission",stat_bonus:"Referral Bonus",stat_cities:"Slovak Cities",stat_support:"Support",
-    tag_benefits:"Benefits",benefits_title:"Why GTA 777?",
+    stat_commission:"Commission",stat_bonus:"Referral Bonus",stat_cities:"Slovak Cities",stat_support:"Support",stat_community:"Largest driver community in Slovakia",
+    tag_benefits:"Benefits",benefits_title:"Why Trojan Fleet?",
     b1_title:"8% Commission",b1_desc:"One of the lowest in the market. Individual terms for top drivers.",
     b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Work on all leading platforms simultaneously.",
     b3_title:"Payouts Every Monday",b3_desc:"Stable. No delays. Every week to your account.",
@@ -1466,7 +1799,7 @@ const T = {
     cars_no_title:"I don't have a car",cars_no_desc:"We offer rental of modern vehicles at great rates. Start earning without upfront investment.",
     cars_cta:"Learn about rental →",
     tag_ref:"Referral Program",ref_title:"Friend Referral Bonus",
-    ref_desc:"Invite a friend to GTA 777 and earn 100€ after 4 weeks of their work. No limits — invite as many as you want!",
+    ref_desc:"Invite a friend to Trojan Fleet and earn 100€ after 4 weeks of their work. No limits — invite as many as you want!",
     ref_friends_label:"Friends I'll invite:",ref_bonus_label:"My bonus:",ref_cta:"Invite a friend →",
     tag_termdocs:"Conditions",termdocs_title:"Requirements & Documents",
     role_driver:"Taxi Driver",role_courier:"Bolt Food Courier",
@@ -1478,7 +1811,9 @@ const T = {
     c_no_license:"No driver's license required!",
     tag_contacts:"Contact",contacts_title:"Contacts",contacts_sub:"Ready to start? Message us on Telegram — we respond fast.",
     contacts_bot:"Telegram bot",contacts_cities:"Coverage cities",contacts_cta:"Open Telegram bot",
-    footer_copy:"© 2026 GTA 777. Taxi Fleet Slovakia. All rights reserved.",
+    gallery_fleet:"Our Fleet",gallery_slovakia:"Operating across Slovakia",
+    city_capital:"Capital of Slovakia",city_zilina:"Northern Slovakia",city_kosice:"Eastern Slovakia",city_bb:"Central Slovakia",
+    footer_copy:"© 2026 Trojan Fleet. Taxi Fleet Slovakia. All rights reserved.",
   }
 };
 
