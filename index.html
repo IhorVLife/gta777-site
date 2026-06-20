@@ -437,13 +437,25 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .calc-main-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
 .calc-main-val {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 4rem;
+  font-size: 6rem;
   color: var(--accent);
-  text-shadow: 0 0 30px rgba(255,204,0,0.4);
+  text-shadow: 0 0 40px rgba(255,204,0,0.5), 0 0 80px rgba(255,204,0,0.2);
   line-height: 1;
-  transition: var(--trans);
+  transition: all 0.25s ease;
+  letter-spacing: 2px;
 }
-.calc-main-currency { font-size: 2rem; color: var(--primary); }
+.calc-main-currency { font-size: 3rem; color: var(--primary); vertical-align: super; font-size: 2.5rem; }
+.calc-commission-badge {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 14px;
+  background: rgba(255,107,0,0.12);
+  border: 1px solid rgba(255,107,0,0.3);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
 .calc-breakdown {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -949,28 +961,12 @@ footer {
       </div>
 
       <div class="calc-result reveal">
-        <div class="calc-main-label" data-i18n="calc_weekly">В неделю</div>
+        <div class="calc-main-label" data-i18n="calc_weekly">Ориентировочный доход за неделю</div>
         <div class="calc-main-val">
-          <span id="weeklyVal">440</span><span class="calc-main-currency">€</span>
+          <span id="weeklyVal">552</span><span class="calc-main-currency">€</span>
         </div>
-        <div class="calc-breakdown">
-          <div>
-            <span class="calc-item-val"><span id="dailyVal">88</span>€</span>
-            <div class="calc-item-lbl" data-i18n="calc_daily">В день</div>
-          </div>
-          <div>
-            <span class="calc-item-val"><span id="monthlyVal">1907</span>€</span>
-            <div class="calc-item-lbl" data-i18n="calc_monthly">В месяц</div>
-          </div>
-          <div>
-            <span class="calc-item-val"><span id="yearlyVal">22880</span>€</span>
-            <div class="calc-item-lbl" data-i18n="calc_yearly">В год</div>
-          </div>
-          <div>
-            <span class="calc-item-val" style="color:var(--primary);">8%</span>
-            <div class="calc-item-lbl" data-i18n="stat_commission">Комиссия</div>
-          </div>
-        </div>
+        <div class="calc-commission-badge">— 8% <span data-i18n="stat_commission">Комиссия</span></div>
+        <p class="calc-note" data-i18n="calc_note">* Примерный расчёт. Реальный доход зависит от города и активности.</p>
       </div>
     </div>
   </div>
@@ -1019,7 +1015,7 @@ footer {
         <div class="td-card-title">⚙️ <span data-i18n="terms_title">Требования к водителю</span></div>
         <ul class="td-list">
           <li data-i18n="t1">Возраст от 21 года</li>
-          <li data-i18n="t2">Водительское удостоверение кат. B (стаж 3+ лет)</li>
+          <li data-i18n="t2">Водительское удостоверение кат. B</li>
           <li data-i18n="t3">Отсутствие судимостей</li>
           <li data-i18n="t4">Смартфон с интернетом</li>
           <li data-i18n="t5">Ответственность и пунктуальность</li>
@@ -1033,7 +1029,7 @@ footer {
           <li data-i18n="d2">Водительское удостоверение (мин. 3 года)</li>
           <li data-i18n="d3">Лицензия таксиста (Preukaz vodiča taxislužby)</li>
           <li data-i18n="d4">Справка о несудимости</li>
-          <li data-i18n="d5">Трудовой договор или регистрация ЖО (živnosť)</li>
+          <li data-i18n="d5">Трудовой договор (оформляем официально)</li>
         </ul>
         <div class="docs-help">
           ✨ <span data-i18n="docs_help">Помогаем с оформлением всех документов</span>
@@ -1171,7 +1167,7 @@ const T = {
     b7_title:"Вся Словакия",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov и другие города.",
     b8_title:"Поддержка 24/7",b8_desc:"Наша команда всегда на связи. Решаем любые вопросы.",
     tag_calc:"Заработок",calc_title:"Калькулятор дохода",calc_days_label:"Дней в неделю",calc_hours_label:"Часов в день",
-    calc_daily:"В день",calc_weekly:"В неделю",calc_monthly:"В месяц",calc_yearly:"В год",
+    calc_weekly:"Ориентировочный доход за неделю",
     calc_note:"* Примерный расчёт после комиссии 8%. Реальный доход зависит от города и активности.",
     tag_steps:"Старт",steps_title:"Как начать работу?",
     s1_title:"Заполни анкету",s1_desc:"Нажми кнопку ниже и заполни форму в Telegram боте — займёт 5 минут.",
@@ -1180,9 +1176,9 @@ const T = {
     s4_title:"Начинай зарабатывать!",s4_desc:"Выбирай удобный график и начинай получать доход уже с первого дня.",
     steps_cta:"Начать →",
     terms_title:"Требования к водителю",
-    t1:"Возраст от 21 года",t2:"Водительское удостоверение кат. B (стаж 3+ лет)",t3:"Отсутствие судимостей",t4:"Смартфон с интернетом",t5:"Ответственность и пунктуальность",t6:"Знание города (желательно)",
+    t1:"Возраст от 21 года",t2:"Водительское удостоверение кат. B",t3:"Отсутствие судимостей",t4:"Смартфон с интернетом",t5:"Ответственность и пунктуальность",t6:"Знание города (желательно)",
     docs_title:"Необходимые документы",
-    d1:"Загранпаспорт, ВНЖ или Карта одиденца",d2:"Водительское удостоверение (мин. 3 года)",d3:"Лицензия таксиста (Preukaz vodiča taxislužby) — помогаем оформить",d4:"Справка о несудимости",d5:"Трудовой договор или регистрация ЖО (živnosť)",
+    d1:"Загранпаспорт, ВНЖ или Карта одиденца",d2:"Водительское удостоверение (мин. 3 года)",d3:"Лицензия таксиста (Preukaz vodiča taxislužby) — помогаем оформить",d4:"Справка о несудимости",d5:"Трудовой договор (оформляем официально)",
     docs_help:"Помогаем с оформлением всех документов",
     tag_cars:"Автомобиль",cars_title:"Аренда автомобиля",
     cars_have_title:"У меня есть своё авто",cars_have_desc:"Отлично! Подключаем к платформам, помогаем с документами, обслуживаем в нашем СТО по специальным ценам.",
@@ -1211,7 +1207,7 @@ const T = {
     b7_title:"Вся Словаччина",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov та інші міста.",
     b8_title:"Підтримка 24/7",b8_desc:"Наша команда завжди на зв'язку. Вирішуємо будь-які питання.",
     tag_calc:"Заробіток",calc_title:"Калькулятор доходу",calc_days_label:"Днів на тиждень",calc_hours_label:"Годин на день",
-    calc_daily:"На день",calc_weekly:"На тиждень",calc_monthly:"На місяць",calc_yearly:"На рік",
+    calc_weekly:"Орієнтовний дохід за тиждень",
     calc_note:"* Приблизний розрахунок після комісії 8%. Реальний дохід залежить від міста та активності.",
     tag_steps:"Старт",steps_title:"Як почати роботу?",
     s1_title:"Заповни анкету",s1_desc:"Натисни кнопку нижче та заповни форму в Telegram боті — займе 5 хвилин.",
@@ -1220,9 +1216,9 @@ const T = {
     s4_title:"Починай заробляти!",s4_desc:"Обирай зручний графік і починай отримувати дохід вже з першого дня.",
     steps_cta:"Почати →",
     terms_title:"Вимоги до водія",
-    t1:"Вік від 21 року",t2:"Водійське посвідчення кат. B (стаж 3+ років)",t3:"Відсутність судимостей",t4:"Смартфон з інтернетом",t5:"Відповідальність та пунктуальність",t6:"Знання міста (бажано)",
+    t1:"Вік від 21 року",t2:"Водійське посвідчення кат. B",t3:"Відсутність судимостей",t4:"Смартфон з інтернетом",t5:"Відповідальність та пунктуальність",t6:"Знання міста (бажано)",
     docs_title:"Необхідні документи",
-    d1:"Закордонний паспорт, ВНЖ або Карта одиденца",d2:"Водійське посвідчення (мін. 3 роки)",d3:"Ліцензія таксиста (Preukaz vodiča taxislužby) — допомагаємо оформити",d4:"Довідка про несудимість",d5:"Трудовий договір або реєстрація ЖО (živnosť)",
+    d1:"Закордонний паспорт, ВНЖ або Карта одиденца",d2:"Водійське посвідчення (мін. 3 роки)",d3:"Ліцензія таксиста (Preukaz vodiča taxislužby) — допомагаємо оформити",d4:"Довідка про несудимість",d5:"Трудовий договір (оформляємо офіційно)",
     docs_help:"Допомагаємо з оформленням усіх документів",
     tag_cars:"Автомобіль",cars_title:"Оренда автомобіля",
     cars_have_title:"У мене є своє авто",cars_have_desc:"Чудово! Підключаємо до платформ, допомагаємо з документами, обслуговуємо в нашому СТО за спеціальними цінами.",
@@ -1251,7 +1247,7 @@ const T = {
     b7_title:"Celé Slovensko",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov a ďalšie mestá.",
     b8_title:"Podpora 24/7",b8_desc:"Náš tím je vždy k dispozícii. Riešime akékoľvek otázky.",
     tag_calc:"Zárobky",calc_title:"Kalkulačka príjmu",calc_days_label:"Dní za týždeň",calc_hours_label:"Hodín za deň",
-    calc_daily:"Za deň",calc_weekly:"Za týždeň",calc_monthly:"Za mesiac",calc_yearly:"Za rok",
+    calc_weekly:"Orientačný príjem za týždeň",
     calc_note:"* Orientačný výpočet po provízii 8%. Skutočný príjem závisí od mesta a aktivity.",
     tag_steps:"Štart",steps_title:"Ako začať pracovať?",
     s1_title:"Vyplň dotazník",s1_desc:"Klikni na tlačidlo nižšie a vyplň formulár v Telegram bote — trvá 5 minút.",
@@ -1260,9 +1256,9 @@ const T = {
     s4_title:"Začni zarábať!",s4_desc:"Vyber si vhodný rozvrh a začni zarábať už od prvého dňa.",
     steps_cta:"Začať →",
     terms_title:"Požiadavky na vodiča",
-    t1:"Vek od 21 rokov",t2:"Vodičský preukaz kat. B (prax 3+ rokov)",t3:"Bezúhonnosť (výpis z registra trestov)",t4:"Smartphone s internetom",t5:"Zodpovednosť a dochvíľnosť",t6:"Znalosť mesta (vítaná)",
+    t1:"Vek od 21 rokov",t2:"Vodičský preukaz kat. B",t3:"Bezúhonnosť (výpis z registra trestov)",t4:"Smartphone s internetom",t5:"Zodpovednosť a dochvíľnosť",t6:"Znalosť mesta (vítaná)",
     docs_title:"Potrebné dokumenty",
-    d1:"Cestovný pas, ВНЖ alebo Karta odídenca",d2:"Vodičský preukaz (min. 3 roky praxe)",d3:"Preukaz vodiča taxislužby — pomáhame vybaviť",d4:"Výpis z registra trestov",d5:"Pracovná zmluva alebo registrácia živnosti (ŽO)",
+    d1:"Cestovný pas, ВНЖ alebo Karta odídenca",d2:"Vodičský preukaz (min. 3 roky praxe)",d3:"Preukaz vodiča taxislužby — pomáhame vybaviť",d4:"Výpis z registra trestov",d5:"Pracovná zmluva (vybavujeme oficiálne)",
     docs_help:"Pomáhame s vybavením všetkých dokumentov",
     tag_cars:"Vozidlo",cars_title:"Prenájom automobilu",
     cars_have_title:"Mám vlastné auto",cars_have_desc:"Výborne! Pripájame na platformy, pomáhame s dokumentmi, zabezpečujeme servis za špeciálne ceny.",
@@ -1291,7 +1287,7 @@ const T = {
     b7_title:"All of Slovakia",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov and other cities.",
     b8_title:"24/7 Support",b8_desc:"Our team is always available. We solve any issues.",
     tag_calc:"Earnings",calc_title:"Income Calculator",calc_days_label:"Days per week",calc_hours_label:"Hours per day",
-    calc_daily:"Per day",calc_weekly:"Per week",calc_monthly:"Per month",calc_yearly:"Per year",
+    calc_weekly:"Estimated weekly income",
     calc_note:"* Estimated calculation after 8% commission. Actual income depends on city and activity.",
     tag_steps:"Start",steps_title:"How to Start?",
     s1_title:"Fill the Form",s1_desc:"Click the button below and fill the form in our Telegram bot — takes 5 minutes.",
@@ -1300,9 +1296,9 @@ const T = {
     s4_title:"Start Earning!",s4_desc:"Choose your schedule and start earning from day one.",
     steps_cta:"Start →",
     terms_title:"Driver Requirements",
-    t1:"Age 21+",t2:"Category B driving license (3+ years experience)",t3:"No criminal record",t4:"Smartphone with internet",t5:"Responsibility and punctuality",t6:"Knowledge of the city (preferred)",
+    t1:"Age 21+",t2:"Category B driving license",t3:"No criminal record",t4:"Smartphone with internet",t5:"Responsibility and punctuality",t6:"Knowledge of the city (preferred)",
     docs_title:"Required Documents",
-    d1:"Passport, residence permit or refugee card",d2:"Driving license (min. 3 years)",d3:"Taxi driver license (Preukaz vodiča taxislužby) — we help obtain",d4:"Criminal record certificate",d5:"Employment contract or self-employment (živnosť)",
+    d1:"Passport, residence permit or refugee card",d2:"Driving license (min. 3 years)",d3:"Taxi driver license (Preukaz vodiča taxislužby) — we help obtain",d4:"Criminal record certificate",d5:"Employment contract (we handle officially)",
     docs_help:"We help with all document processing",
     tag_cars:"Vehicle",cars_title:"Car Rental",
     cars_have_title:"I have my own car",cars_have_desc:"Great! We connect you to platforms, help with documents, and service your car at special prices.",
@@ -1334,20 +1330,13 @@ function setLang(lang) {
 }
 
 /* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
-const HOURLY_RATE = 11; // €/hr net after 8% commission
 function updateCalc() {
   const days  = parseInt(document.getElementById('daysSlider').value);
   const hours = parseInt(document.getElementById('hoursSlider').value);
-  const daily   = Math.round(hours * HOURLY_RATE);
-  const weekly  = daily * days;
-  const monthly = Math.round(weekly * 4.33);
-  const yearly  = weekly * 52;
-  document.getElementById('daysVal').textContent  = days;
-  document.getElementById('hoursVal').textContent = hours;
-  document.getElementById('dailyVal').textContent   = daily;
-  document.getElementById('weeklyVal').textContent  = weekly;
-  document.getElementById('monthlyVal').textContent = monthly;
-  document.getElementById('yearlyVal').textContent  = yearly.toLocaleString();
+  const weekly = Math.round(days * hours * 15 * 0.92);
+  document.getElementById('daysVal').textContent   = days;
+  document.getElementById('hoursVal').textContent  = hours;
+  document.getElementById('weeklyVal').textContent = weekly;
 }
 document.getElementById('daysSlider').addEventListener('input', updateCalc);
 document.getElementById('hoursSlider').addEventListener('input', updateCalc);
