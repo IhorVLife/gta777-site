@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GTA 777 — таксопарк Словакия. Работа водителем Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник.">
+<title>GTA 777 — Taxi Fleet Slovakia | Bolt & Uber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════ RESET & VARS ══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #1a0a2e;
+  --bg2:     #130820;
+  --bg3:     #0d0515;
+  --primary: #ff6b00;
+  --accent:  #ffcc00;
+  --text:    #ffffff;
+  --muted:   #9090aa;
+  --card:    rgba(255,255,255,0.035);
+  --border:  rgba(255,107,0,0.25);
+  --glow:    rgba(255,107,0,0.4);
+  --glow2:   rgba(255,204,0,0.3);
+  --r:       12px;
+  --trans:   0.3s ease;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* ═══════════════════════════════ UTILITIES ══════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  transition: var(--trans);
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #e55a00);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(255,107,0,0.45);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(255,107,0,0.65);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 4px 24px rgba(255,204,0,0.4);
+}
+.tag {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════ HEADER ════════════════════════════════════ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(13,5,21,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,107,0,0.15);
+  transition: var(--trans);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 24px;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(255,204,0,0.5), 2px 2px 0 var(--primary);
+  flex-shrink: 0;
+}
+nav { display: flex; align-items: center; gap: 4px; }
+nav a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: var(--trans);
+  white-space: nowrap;
+}
+nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+.header-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.lang-switcher { display: flex; align-items: center; gap: 2px; }
+.lang-btn {
+  padding: 4px 9px;
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--trans);
+  letter-spacing: 0.5px;
+  font-family: 'Inter', sans-serif;
+}
+.lang-btn:hover { color: var(--text); }
+.lang-btn.active { color: var(--accent); background: rgba(255,204,0,0.1); }
+.header-cta { display: none; }
+@media(min-width: 900px) { .header-cta { display: inline-flex; } }
+
+/* ═══════════════════════════════ HERO ══════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% -20%, rgba(255,107,0,0.18) 0%, transparent 65%),
+              radial-gradient(ellipse at 80% 80%, rgba(255,204,0,0.08) 0%, transparent 50%),
+              linear-gradient(180deg, #1a0a2e 0%, #0d0515 100%);
+}
+/* retro grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,107,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,107,0,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.6) 80%, transparent 100%);
+}
+/* city skyline */
+.hero-city {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  overflow: hidden;
+}
+.hero-city svg { width: 100%; height: 100%; }
+/* floating particles */
+.particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-80vh) scale(0.5); opacity: 0; }
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 120px 24px 80px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 50px;
+  background: rgba(255,107,0,0.12);
+  border: 1px solid rgba(255,107,0,0.35);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 28px;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,107,0,0); }
+  50%       { box-shadow: 0 0 20px rgba(255,107,0,0.3); }
+}
+.hero-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 18vw, 13rem);
+  line-height: 0.9;
+  color: var(--accent);
+  -webkit-text-stroke: 3px var(--primary);
+  text-shadow:
+    4px 4px 0 var(--primary),
+    8px 8px 0 rgba(255,107,0,0.4),
+    0 0 60px rgba(255,204,0,0.6),
+    0 0 120px rgba(255,107,0,0.3);
+  letter-spacing: 6px;
+  animation: logo-flicker 8s ease-in-out infinite;
+  display: block;
+}
+@keyframes logo-flicker {
+  0%, 93%, 95%, 97%, 100% { opacity: 1; }
+  94%, 96%                 { opacity: 0.92; text-shadow: 4px 4px 0 var(--primary), 0 0 30px rgba(255,204,0,0.9), 0 0 60px rgba(255,107,0,0.6); }
+}
+.hero-tagline {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 16px 0 12px;
+  text-shadow: 0 0 30px rgba(255,255,255,0.2);
+}
+.hero-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+.hero-sub strong { color: var(--primary); }
+.hero-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,107,0,0.15);
+  padding-top: 40px;
+}
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(255,204,0,0.4);
+  display: block;
+  line-height: 1;
+}
+.hero-stat-lbl { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 2;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+.scroll-indicator::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(var(--primary), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ═══════════════════════════════ BENEFITS ══════════════════════════════════ */
+#benefits { background: var(--bg2); }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.benefit-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 24px;
+  transition: var(--trans);
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(255,107,0,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: var(--trans);
+}
+.benefit-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(255,107,0,0.15); }
+.benefit-card:hover::before { opacity: 1; }
+.benefit-icon {
+  font-size: 2.2rem;
+  margin-bottom: 14px;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(255,107,0,0.4));
+}
+.benefit-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+.benefit-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+/* ═══════════════════════════════ CALCULATOR ════════════════════════════════ */
+#calculator {
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg3) 100%);
+  position: relative;
+  overflow: hidden;
+}
+#calculator::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.calc-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+@media(max-width: 700px) { .calc-wrap { grid-template-columns: 1fr; } }
+.calc-controls { display: flex; flex-direction: column; gap: 28px; }
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.slider-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255,107,0,0.5);
+  transition: var(--trans);
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.calc-result {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.calc-result::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255,204,0,0.06) 0%, transparent 60%);
+}
+.calc-main-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.calc-main-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(255,204,0,0.4);
+  line-height: 1;
+  transition: var(--trans);
+}
+.calc-main-currency { font-size: 2rem; color: var(--primary); }
+.calc-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(255,107,0,0.1);
+  padding-top: 24px;
+}
+.calc-item-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+}
+.calc-item-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
+.calc-note { font-size: 0.75rem; color: var(--muted); margin-top: 20px; line-height: 1.5; }
+
+/* ═══════════════════════════════ HOW TO START ══════════════════════════════ */
+#steps { background: var(--bg2); }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 48px; left: 12.5%; right: 12.5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  opacity: 0.3;
+  z-index: 0;
+}
+@media(max-width: 768px) { .steps-grid { grid-template-columns: 1fr 1fr; } .steps-grid::before { display: none; } }
+@media(max-width: 480px) { .steps-grid { grid-template-columns: 1fr; } }
+.step-card { text-align: center; position: relative; z-index: 1; }
+.step-num {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #e55a00);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 24px rgba(255,107,0,0.4);
+}
+.step-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+.step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.steps-cta { text-align: center; margin-top: 52px; }
+
+/* ═══════════════════════════════ TERMS + DOCS ══════════════════════════════ */
+#termdocs { background: var(--bg3); }
+.termdocs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media(max-width: 700px) { .termdocs-grid { grid-template-columns: 1fr; } }
+.td-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 36px;
+}
+.td-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.td-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.td-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.td-list li::before {
+  content: '✓';
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,107,0,0.15);
+  border: 1px solid rgba(255,107,0,0.4);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.docs-help {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: rgba(255,204,0,0.08);
+  border: 1px solid rgba(255,204,0,0.2);
+  font-size: 0.85rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════ CAR RENTAL ════════════════════════════════ */
+#cars { background: var(--bg); }
+.cars-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+@media(max-width: 700px) { .cars-grid { grid-template-columns: 1fr; } }
+.car-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 36px;
+  transition: var(--trans);
+  text-align: center;
+}
+.car-card:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(255,204,0,0.1); }
+.car-icon { font-size: 3.5rem; margin-bottom: 18px; display: block; }
+.car-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.car-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px; }
+
+/* ═══════════════════════════════ REFERRAL ══════════════════════════════════ */
+#referral {
+  background: linear-gradient(135deg, rgba(255,107,0,0.08) 0%, var(--bg2) 50%, rgba(255,204,0,0.06) 100%);
+  border-top: 1px solid rgba(255,107,0,0.15);
+  border-bottom: 1px solid rgba(255,107,0,0.15);
+}
+.referral-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ref-badge-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 15vw, 10rem);
+  color: var(--accent);
+  -webkit-text-stroke: 3px var(--primary);
+  text-shadow: 0 0 60px rgba(255,204,0,0.5), 4px 4px 0 var(--primary);
+  line-height: 1;
+  display: block;
+  margin: 12px 0;
+}
+.ref-desc { font-size: 1.05rem; color: var(--muted); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.ref-calc {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 36px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ref-calc-item { text-align: center; }
+.ref-calc-item label { display: block; font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; margin-bottom: 8px; }
+.ref-count-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: var(--accent);
+  min-width: 60px;
+  display: block;
+}
+.ref-bonus-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: var(--primary);
+  display: block;
+}
+.ref-calc input[type=range] { width: 140px; }
+.ref-divider { color: var(--muted); font-size: 1.4rem; align-self: flex-end; padding-bottom: 6px; }
+
+/* ═══════════════════════════════ CONTACTS ══════════════════════════════════ */
+#contacts { background: var(--bg3); }
+.contacts-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media(max-width: 700px) { .contacts-inner { grid-template-columns: 1fr; } }
+.contacts-left .section-title { text-align: left; }
+.contacts-left .section-sub { text-align: left; margin-left: 0; }
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: var(--trans);
+  margin-bottom: 14px;
+}
+.contact-btn:hover { border-color: var(--primary); background: rgba(255,107,0,0.05); transform: translateX(4px); }
+.contact-btn-icon { font-size: 1.8rem; flex-shrink: 0; }
+.contact-btn-text strong { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+.contact-btn-text span { font-size: 0.82rem; color: var(--muted); }
+.map-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 32px;
+  height: 100%;
+}
+.map-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.city-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.city-tag {
+  padding: 6px 14px;
+  background: rgba(255,107,0,0.08);
+  border: 1px solid rgba(255,107,0,0.25);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: var(--trans);
+}
+.city-tag:hover { background: rgba(255,107,0,0.18); border-color: var(--primary); }
+.contacts-main-cta { text-align: center; margin-top: 52px; }
+
+/* ═══════════════════════════════ FOOTER ════════════════════════════════════ */
+footer {
+  background: var(--bg3);
+  border-top: 1px solid rgba(255,107,0,0.12);
+  padding: 32px 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-shadow: 1px 1px 0 var(--primary);
+}
+.footer-copy { font-size: 0.82rem; color: var(--muted); }
+.footer-langs { display: flex; gap: 6px; }
+
+/* ═══════════════════════════════ MOBILE FIXED CTA ═════════════════════════ */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  padding: 12px 16px;
+  background: rgba(13,5,21,0.95);
+  border-top: 1px solid rgba(255,107,0,0.2);
+  backdrop-filter: blur(10px);
+}
+.mobile-cta .btn { width: 100%; justify-content: center; font-size: 1rem; padding: 14px; }
+@media(max-width: 768px) { .mobile-cta { display: block; } body { padding-bottom: 70px; } }
+
+/* ═══════════════════════════════ NAV MOBILE ════════════════════════════════ */
+@media(max-width: 900px) {
+  nav { display: none; }
+  .header-inner { gap: 12px; }
+}
+
+/* ═══════════════════════════════ SCROLLBAR ════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+/* ═══════════════════════════════ PLATFORM BADGES ══════════════════════════ */
+.platform-badges {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.platform-badge {
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+.pb-bolt   { background: #34d186; color: #000; }
+.pb-uber   { background: #000; color: #fff; border: 1px solid #333; }
+.pb-bfood  { background: #34d186; color: #000; }
+
+/* stagger reveal delays */
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+.reveal-d6 { transition-delay: 0.6s; }
+.reveal-d7 { transition-delay: 0.7s; }
+.reveal-d8 { transition-delay: 0.8s; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HEADER ════════════════════════════════════ -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">GTA 777</div>
+    <nav>
+      <a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
+      <a href="#termdocs"   data-i18n="nav_terms">Условия</a>
+      <a href="#termdocs"   data-i18n="nav_docs">Документы</a>
+      <a href="#cars"       data-i18n="nav_cars">Аренда авто</a>
+      <a href="#contacts"   data-i18n="nav_contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn"        onclick="setLang('ua')">UA</button>
+        <button class="lang-btn"        onclick="setLang('sk')">SK</button>
+        <button class="lang-btn"        onclick="setLang('en')">EN</button>
+      </div>
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary header-cta" data-i18n="nav_start">Начать работу</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-city">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,200 L0,140 L30,140 L30,100 L50,100 L50,80 L70,80 L70,60 L90,60 L90,80 L110,80 L110,100 L120,100 L120,85 L135,85 L135,70 L150,70 L150,55 L165,55 L165,70 L180,70 L180,85 L195,85 L195,100 L210,100 L210,130 L230,130 L230,110 L245,110 L245,90 L260,90 L260,75 L275,75 L275,90 L290,90 L290,110 L310,110 L310,140 L330,140 L330,120 L345,120 L345,100 L360,100 L360,80 L375,80 L375,60 L385,60 L385,45 L395,45 L395,60 L405,60 L405,80 L420,80 L420,100 L435,100 L435,120 L450,120 L450,105 L465,105 L465,88 L480,88 L480,72 L495,72 L495,88 L510,88 L510,105 L530,105 L530,130 L550,130 L550,112 L562,112 L562,95 L575,95 L575,78 L588,78 L588,65 L600,65 L600,50 L612,50 L612,65 L624,65 L624,78 L636,78 L636,95 L648,95 L648,112 L660,112 L660,130 L680,130 L680,115 L695,115 L695,98 L710,98 L710,82 L720,82 L720,130 L740,130 L740,108 L755,108 L755,90 L770,90 L770,72 L782,72 L782,58 L794,58 L794,44 L806,44 L806,58 L818,58 L818,72 L830,72 L830,90 L845,90 L845,108 L860,108 L860,130 L880,130 L880,118 L893,118 L893,103 L906,103 L906,88 L920,88 L920,103 L933,103 L933,118 L946,118 L946,130 L965,130 L965,110 L980,110 L980,92 L995,92 L995,76 L1010,76 L1010,60 L1022,60 L1022,46 L1034,46 L1034,32 L1046,32 L1046,46 L1058,46 L1058,60 L1070,60 L1070,76 L1085,76 L1085,92 L1100,92 L1100,110 L1118,110 L1118,130 L1135,130 L1135,115 L1148,115 L1148,100 L1162,100 L1162,85 L1175,85 L1175,100 L1188,100 L1188,115 L1202,115 L1202,130 L1220,130 L1220,112 L1235,112 L1235,95 L1248,95 L1248,80 L1260,80 L1260,95 L1272,95 L1272,112 L1285,112 L1285,130 L1310,130 L1310,118 L1322,118 L1322,105 L1334,105 L1334,90 L1346,90 L1346,105 L1358,105 L1358,118 L1370,118 L1370,130 L1390,130 L1390,140 L1440,140 L1440,200 Z" fill="rgba(26,10,46,0.95)"/>
+      <path d="M0,200 L0,160 L1440,160 L1440,200 Z" fill="rgba(13,5,21,1)"/>
+      <!-- windows glow -->
+      <rect x="55" y="65" width="6" height="5" fill="rgba(255,204,0,0.3)" rx="1"/>
+      <rect x="65" y="65" width="6" height="5" fill="rgba(255,204,0,0.15)" rx="1"/>
+      <rect x="155" y="60" width="5" height="4" fill="rgba(255,107,0,0.4)" rx="1"/>
+      <rect x="163" y="60" width="5" height="4" fill="rgba(255,204,0,0.3)" rx="1"/>
+      <rect x="250" y="95" width="5" height="4" fill="rgba(255,204,0,0.35)" rx="1"/>
+      <rect x="265" y="80" width="5" height="4" fill="rgba(255,107,0,0.3)" rx="1"/>
+      <rect x="380" y="50" width="5" height="4" fill="rgba(255,204,0,0.5)" rx="1"/>
+      <rect x="390" y="50" width="5" height="4" fill="rgba(255,107,0,0.4)" rx="1"/>
+      <rect x="600" y="55" width="5" height="4" fill="rgba(255,204,0,0.5)" rx="1"/>
+      <rect x="608" y="55" width="5" height="4" fill="rgba(255,107,0,0.35)" rx="1"/>
+      <rect x="1040" y="37" width="5" height="4" fill="rgba(255,204,0,0.6)" rx="1"/>
+      <rect x="1048" y="37" width="5" height="4" fill="rgba(255,107,0,0.5)" rx="1"/>
+      <rect x="775" y="63" width="5" height="4" fill="rgba(255,204,0,0.45)" rx="1"/>
+      <rect x="783" y="63" width="5" height="4" fill="rgba(255,204,0,0.3)" rx="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span>🏎</span>
+      <span data-i18n="hero_badge">Таксопарк · Словакия</span>
+    </div>
+    <span class="hero-logo">GTA 777</span>
+    <div class="hero-tagline reveal" data-i18n="hero_tagline">Работай на своих условиях</div>
+    <div class="hero-sub reveal">
+      <span data-i18n="hero_sub">Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник</span>
+    </div>
+    <div class="hero-cta-group reveal">
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.15rem;padding:16px 40px;">
+        🚖 <span data-i18n="hero_cta">Начать работу →</span>
+      </a>
+      <a href="#calculator" class="btn btn-outline" data-i18n="nav_calc">Калькулятор</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div>
+        <span class="hero-stat-num">8%</span>
+        <div class="hero-stat-lbl" data-i18n="stat_commission">Комиссия</div>
+      </div>
+      <div>
+        <span class="hero-stat-num">100€</span>
+        <div class="hero-stat-lbl" data-i18n="stat_bonus">Бонус за друга</div>
+      </div>
+      <div>
+        <span class="hero-stat-num">7</span>
+        <div class="hero-stat-lbl" data-i18n="stat_cities">Городов Словакии</div>
+      </div>
+      <div>
+        <span class="hero-stat-num">24/7</span>
+        <div class="hero-stat-lbl" data-i18n="stat_support">Поддержка</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" data-i18n="hero_scroll">Узнать больше</div>
+</section>
+
+<!-- ═══════════════════════════ BENEFITS ══════════════════════════════════ -->
+<section id="benefits" class="section">
+  <div class="container">
+    <div class="tag" data-i18n="tag_benefits">Преимущества</div>
+    <h2 class="section-title" data-i18n="benefits_title">Почему GTA 777?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal reveal-d1">
+        <span class="benefit-icon">💰</span>
+        <div class="benefit-title" data-i18n="b1_title">Комиссия 8%</div>
+        <div class="benefit-desc" data-i18n="b1_desc">Одна из самых низких на рынке. Индивидуальные условия для лучших водителей.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d2">
+        <span class="benefit-icon">📱</span>
+        <div class="benefit-title" data-i18n="b2_title">Bolt + Uber + Bolt Food</div>
+        <div class="benefit-desc" data-i18n="b2_desc">Работай на всех ведущих платформах одновременно.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d3">
+        <span class="benefit-icon">📅</span>
+        <div class="benefit-title" data-i18n="b3_title">Выплаты каждый понедельник</div>
+        <div class="benefit-desc" data-i18n="b3_desc">Стабильно. Без задержек. Каждую неделю на твой счёт.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d4">
+        <span class="benefit-icon">🚗</span>
+        <div class="benefit-title" data-i18n="b4_title">Аренда автомобиля</div>
+        <div class="benefit-desc" data-i18n="b4_desc">Нет своего авто? Не проблема — арендуй у нас на выгодных условиях.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d5">
+        <span class="benefit-icon">🔧</span>
+        <div class="benefit-title" data-i18n="b5_title">Собственное СТО</div>
+        <div class="benefit-desc" data-i18n="b5_desc">Быстрое обслуживание и ремонт твоего автомобиля по сниженным ценам.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d6">
+        <span class="benefit-icon">🎁</span>
+        <div class="benefit-title" data-i18n="b6_title">Бонус 100€ за друга</div>
+        <div class="benefit-desc" data-i18n="b6_desc">Пригласи друга — получи 100€ после 4 недель его работы.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d7">
+        <span class="benefit-icon">🇸🇰</span>
+        <div class="benefit-title" data-i18n="b7_title">Вся Словакия</div>
+        <div class="benefit-desc" data-i18n="b7_desc">Bratislava, Žilina, Košice, Banská Bystrica, Prešov и другие города.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d8">
+        <span class="benefit-icon">💬</span>
+        <div class="benefit-title" data-i18n="b8_title">Поддержка 24/7</div>
+        <div class="benefit-desc" data-i18n="b8_desc">Наша команда всегда на связи. Решаем любые вопросы.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CALCULATOR ════════════════════════════════ -->
+<section id="calculator" class="section">
+  <div class="container">
+    <div class="tag" data-i18n="tag_calc">Заработок</div>
+    <h2 class="section-title" data-i18n="calc_title">Калькулятор дохода</h2>
+    <div class="calc-wrap">
+      <div class="calc-controls reveal">
+        <div class="slider-group">
+          <label>
+            <span data-i18n="calc_days_label">Дней в неделю</span>
+            <span class="slider-val" id="daysVal">5</span>
+          </label>
+          <input type="range" id="daysSlider" min="1" max="7" value="5">
+        </div>
+        <div class="slider-group">
+          <label>
+            <span data-i18n="calc_hours_label">Часов в день</span>
+            <span class="slider-val" id="hoursVal">8</span>
+          </label>
+          <input type="range" id="hoursSlider" min="4" max="16" value="8">
+        </div>
+        <p class="calc-note" data-i18n="calc_note">* Примерный расчёт после комиссии 8%. Реальный доход зависит от города и активности.</p>
+      </div>
+
+      <div class="calc-result reveal">
+        <div class="calc-main-label" data-i18n="calc_weekly">В неделю</div>
+        <div class="calc-main-val">
+          <span id="weeklyVal">440</span><span class="calc-main-currency">€</span>
+        </div>
+        <div class="calc-breakdown">
+          <div>
+            <span class="calc-item-val"><span id="dailyVal">88</span>€</span>
+            <div class="calc-item-lbl" data-i18n="calc_daily">В день</div>
+          </div>
+          <div>
+            <span class="calc-item-val"><span id="monthlyVal">1907</span>€</span>
+            <div class="calc-item-lbl" data-i18n="calc_monthly">В месяц</div>
+          </div>
+          <div>
+            <span class="calc-item-val"><span id="yearlyVal">22880</span>€</span>
+            <div class="calc-item-lbl" data-i18n="calc_yearly">В год</div>
+          </div>
+          <div>
+            <span class="calc-item-val" style="color:var(--primary);">8%</span>
+            <div class="calc-item-lbl" data-i18n="stat_commission">Комиссия</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ HOW TO START ══════════════════════════════ -->
+<section id="steps" class="section">
+  <div class="container">
+    <div class="tag" data-i18n="tag_steps">Старт</div>
+    <h2 class="section-title" data-i18n="steps_title">Как начать работу?</h2>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-d1">
+        <div class="step-num">1</div>
+        <div class="step-title" data-i18n="s1_title">Заполни анкету</div>
+        <div class="step-desc" data-i18n="s1_desc">Нажми кнопку ниже и заполни форму в Telegram боте — займёт 5 минут.</div>
+      </div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">2</div>
+        <div class="step-title" data-i18n="s2_title">Собеседование</div>
+        <div class="step-desc" data-i18n="s2_desc">Наш менеджер свяжется с тобой, ответит на вопросы и расскажет условия.</div>
+      </div>
+      <div class="step-card reveal reveal-d3">
+        <div class="step-num">3</div>
+        <div class="step-title" data-i18n="s3_title">Оформление</div>
+        <div class="step-desc" data-i18n="s3_desc">Помогаем с документами, регистрацией и подключением к платформам.</div>
+      </div>
+      <div class="step-card reveal reveal-d4">
+        <div class="step-num">4</div>
+        <div class="step-title" data-i18n="s4_title">Начинай зарабатывать!</div>
+        <div class="step-desc" data-i18n="s4_desc">Выбирай удобный график и начинай получать доход уже с первого дня.</div>
+      </div>
+    </div>
+    <div class="steps-cta reveal">
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">
+        🚖 <span data-i18n="steps_cta">Начать →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TERMS + DOCS ══════════════════════════════ -->
+<section id="termdocs" class="section">
+  <div class="container">
+    <div class="termdocs-grid">
+      <div class="td-card reveal">
+        <div class="td-card-title">⚙️ <span data-i18n="terms_title">Требования к водителю</span></div>
+        <ul class="td-list">
+          <li data-i18n="t1">Возраст от 21 года</li>
+          <li data-i18n="t2">Водительское удостоверение кат. B (стаж 3+ лет)</li>
+          <li data-i18n="t3">Отсутствие судимостей</li>
+          <li data-i18n="t4">Смартфон с интернетом</li>
+          <li data-i18n="t5">Ответственность и пунктуальность</li>
+          <li data-i18n="t6">Знание города (желательно)</li>
+        </ul>
+      </div>
+      <div class="td-card reveal">
+        <div class="td-card-title">📄 <span data-i18n="docs_title">Необходимые документы</span></div>
+        <ul class="td-list">
+          <li data-i18n="d1">Загранпаспорт, ВНЖ или Карта одиденца</li>
+          <li data-i18n="d2">Водительское удостоверение (мин. 3 года)</li>
+          <li data-i18n="d3">Лицензия таксиста (Preukaz vodiča taxislužby)</li>
+          <li data-i18n="d4">Справка о несудимости</li>
+          <li data-i18n="d5">Трудовой договор или регистрация ЖО (živnosť)</li>
+        </ul>
+        <div class="docs-help">
+          ✨ <span data-i18n="docs_help">Помогаем с оформлением всех документов</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CAR RENTAL ════════════════════════════════ -->
+<section id="cars" class="section">
+  <div class="container">
+    <div class="tag" data-i18n="tag_cars">Автомобиль</div>
+    <h2 class="section-title" data-i18n="cars_title">Аренда автомобиля</h2>
+    <div class="cars-grid">
+      <div class="car-card reveal">
+        <span class="car-icon">✅</span>
+        <div class="car-title" data-i18n="cars_have_title">У меня есть своё авто</div>
+        <div class="car-desc" data-i18n="cars_have_desc">Отлично! Подключаем к платформам, помогаем с документами, обслуживаем в нашем СТО по специальным ценам.</div>
+        <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_cta">Начать работу →</a>
+      </div>
+      <div class="car-card reveal">
+        <span class="car-icon">🚗</span>
+        <div class="car-title" data-i18n="cars_no_title">У меня нет авто</div>
+        <div class="car-desc" data-i18n="cars_no_desc">Предлагаем аренду современных автомобилей на выгодных условиях. Начни зарабатывать без первоначальных вложений.</div>
+        <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="cars_cta">Узнать об аренде →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ REFERRAL ══════════════════════════════════ -->
+<section id="referral" class="section">
+  <div class="container">
+    <div class="referral-inner">
+      <div class="tag" data-i18n="tag_ref">Реферальная программа</div>
+      <h2 class="section-title" data-i18n="ref_title">Бонус за приведённого друга</h2>
+      <span class="ref-badge-big reveal">100€</span>
+      <p class="ref-desc reveal" data-i18n="ref_desc">Пригласи друга в GTA 777 и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!</p>
+
+      <div class="ref-calc reveal">
+        <div class="ref-calc-item">
+          <label data-i18n="ref_friends_label">Друзей приглашу:</label>
+          <span class="ref-count-display" id="refCount">3</span>
+          <input type="range" id="refSlider" min="1" max="20" value="3">
+        </div>
+        <div class="ref-divider">→</div>
+        <div class="ref-calc-item">
+          <label data-i18n="ref_bonus_label">Мой бонус:</label>
+          <span class="ref-bonus-display" id="refBonus">300€</span>
+        </div>
+      </div>
+
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary reveal" style="font-size:1.05rem;padding:16px 36px;">
+        🎁 <span data-i18n="ref_cta">Пригласить друга →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACTS ══════════════════════════════════ -->
+<section id="contacts" class="section">
+  <div class="container">
+    <div class="contacts-inner">
+      <div class="contacts-left reveal">
+        <div class="tag" data-i18n="tag_contacts">Связаться</div>
+        <h2 class="section-title" style="text-align:left;" data-i18n="contacts_title">Контакты</h2>
+        <p class="section-sub" style="text-align:left;margin-left:0;" data-i18n="contacts_sub">Готов начать? Напиши нам в Telegram — ответим быстро.</p>
+        <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="contact-btn">
+          <span class="contact-btn-icon">✈️</span>
+          <div class="contact-btn-text">
+            <strong data-i18n="contacts_bot">Telegram бот</strong>
+            <span>@gta777_drivers_bot</span>
+          </div>
+        </a>
+      </div>
+      <div class="map-card reveal">
+        <div class="map-card-title">📍 <span data-i18n="contacts_cities">Города присутствия</span></div>
+        <div class="city-list">
+          <span class="city-tag">🏙 Bratislava</span>
+          <span class="city-tag">🏙 Žilina</span>
+          <span class="city-tag">🏙 Košice</span>
+          <span class="city-tag">🏙 Banská Bystrica</span>
+          <span class="city-tag">🏙 Prešov</span>
+          <span class="city-tag">🏙 Nitra</span>
+          <span class="city-tag">🏙 Trnava</span>
+        </div>
+      </div>
+    </div>
+    <div class="contacts-main-cta reveal">
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.15rem;padding:18px 48px;">
+        🚖 <span data-i18n="contacts_cta">Открыть Telegram бот</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ════════════════════════════════════ -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">GTA 777</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 GTA 777. Таксопарк Словакия.</div>
+    <div class="footer-langs">
+      <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn"        onclick="setLang('ua')">UA</button>
+      <button class="lang-btn"        onclick="setLang('sk')">SK</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════ MOBILE CTA ════════════════════════════════ -->
+<div class="mobile-cta">
+  <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary">
+    🚖 <span data-i18n="hero_cta">Начать работу →</span>
+  </a>
+</div>
+
+<script>
+/* ══════════════════════ TRANSLATIONS ══════════════════════════════════════ */
+const T = {
+  ru: {
+    nav_calc:"Калькулятор",nav_terms:"Условия",nav_docs:"Документы",nav_cars:"Аренда авто",nav_contacts:"Контакты",nav_start:"Начать работу",
+    hero_badge:"Таксопарк · Словакия",hero_tagline:"Работай на своих условиях",
+    hero_sub:"Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник",
+    hero_cta:"Начать работу →",hero_scroll:"Узнать больше",
+    stat_commission:"Комиссия",stat_bonus:"Бонус за друга",stat_cities:"Городов Словакии",stat_support:"Поддержка",
+    tag_benefits:"Преимущества",benefits_title:"Почему GTA 777?",
+    b1_title:"Комиссия 8%",b1_desc:"Одна из самых низких на рынке. Индивидуальные условия для лучших водителей.",
+    b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Работай на всех ведущих платформах одновременно.",
+    b3_title:"Выплаты каждый понедельник",b3_desc:"Стабильно. Без задержек. Каждую неделю на твой счёт.",
+    b4_title:"Аренда автомобиля",b4_desc:"Нет своего авто? Не проблема — арендуй у нас на выгодных условиях.",
+    b5_title:"Собственное СТО",b5_desc:"Быстрое обслуживание и ремонт твоего автомобиля по сниженным ценам.",
+    b6_title:"Бонус 100€ за друга",b6_desc:"Пригласи друга — получи 100€ после 4 недель его работы.",
+    b7_title:"Вся Словакия",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov и другие города.",
+    b8_title:"Поддержка 24/7",b8_desc:"Наша команда всегда на связи. Решаем любые вопросы.",
+    tag_calc:"Заработок",calc_title:"Калькулятор дохода",calc_days_label:"Дней в неделю",calc_hours_label:"Часов в день",
+    calc_daily:"В день",calc_weekly:"В неделю",calc_monthly:"В месяц",calc_yearly:"В год",
+    calc_note:"* Примерный расчёт после комиссии 8%. Реальный доход зависит от города и активности.",
+    tag_steps:"Старт",steps_title:"Как начать работу?",
+    s1_title:"Заполни анкету",s1_desc:"Нажми кнопку ниже и заполни форму в Telegram боте — займёт 5 минут.",
+    s2_title:"Собеседование",s2_desc:"Наш менеджер свяжется с тобой, ответит на вопросы и расскажет условия.",
+    s3_title:"Оформление",s3_desc:"Помогаем с документами, регистрацией и подключением к платформам.",
+    s4_title:"Начинай зарабатывать!",s4_desc:"Выбирай удобный график и начинай получать доход уже с первого дня.",
+    steps_cta:"Начать →",
+    terms_title:"Требования к водителю",
+    t1:"Возраст от 21 года",t2:"Водительское удостоверение кат. B (стаж 3+ лет)",t3:"Отсутствие судимостей",t4:"Смартфон с интернетом",t5:"Ответственность и пунктуальность",t6:"Знание города (желательно)",
+    docs_title:"Необходимые документы",
+    d1:"Загранпаспорт, ВНЖ или Карта одиденца",d2:"Водительское удостоверение (мин. 3 года)",d3:"Лицензия таксиста (Preukaz vodiča taxislužby) — помогаем оформить",d4:"Справка о несудимости",d5:"Трудовой договор или регистрация ЖО (živnosť)",
+    docs_help:"Помогаем с оформлением всех документов",
+    tag_cars:"Автомобиль",cars_title:"Аренда автомобиля",
+    cars_have_title:"У меня есть своё авто",cars_have_desc:"Отлично! Подключаем к платформам, помогаем с документами, обслуживаем в нашем СТО по специальным ценам.",
+    cars_no_title:"У меня нет авто",cars_no_desc:"Предлагаем аренду современных автомобилей на выгодных условиях. Начни зарабатывать без первоначальных вложений.",
+    cars_cta:"Узнать об аренде →",
+    tag_ref:"Реферальная программа",ref_title:"Бонус за приведённого друга",
+    ref_desc:"Пригласи друга в GTA 777 и получи 100€ после 4 недель его работы. Без ограничений — приглашай сколько угодно!",
+    ref_friends_label:"Друзей приглашу:",ref_bonus_label:"Мой бонус:",ref_cta:"Пригласить друга →",
+    tag_contacts:"Связаться",contacts_title:"Контакты",contacts_sub:"Готов начать? Напиши нам в Telegram — ответим быстро.",
+    contacts_bot:"Telegram бот",contacts_cities:"Города присутствия",contacts_cta:"Открыть Telegram бот",
+    footer_copy:"© 2026 GTA 777. Таксопарк Словакия. Все права защищены.",
+  },
+  ua: {
+    nav_calc:"Калькулятор",nav_terms:"Умови",nav_docs:"Документи",nav_cars:"Оренда авто",nav_contacts:"Контакти",nav_start:"Почати роботу",
+    hero_badge:"Таксопарк · Словаччина",hero_tagline:"Працюй на своїх умовах",
+    hero_sub:"Bolt • Uber • Bolt Food | Комісія <strong>8%</strong> | Виплати щопонеділка",
+    hero_cta:"Почати роботу →",hero_scroll:"Дізнатись більше",
+    stat_commission:"Комісія",stat_bonus:"Бонус за друга",stat_cities:"Міст Словаччини",stat_support:"Підтримка",
+    tag_benefits:"Переваги",benefits_title:"Чому GTA 777?",
+    b1_title:"Комісія 8%",b1_desc:"Одна з найнижчих на ринку. Індивідуальні умови для найкращих водіїв.",
+    b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Працюй на всіх провідних платформах одночасно.",
+    b3_title:"Виплати щопонеділка",b3_desc:"Стабільно. Без затримок. Щотижня на твій рахунок.",
+    b4_title:"Оренда автомобіля",b4_desc:"Немає свого авто? Не проблема — орендуй у нас на вигідних умовах.",
+    b5_title:"Власне СТО",b5_desc:"Швидке обслуговування та ремонт твого автомобіля за зниженими цінами.",
+    b6_title:"Бонус 100€ за друга",b6_desc:"Запроси друга — отримай 100€ після 4 тижнів його роботи.",
+    b7_title:"Вся Словаччина",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov та інші міста.",
+    b8_title:"Підтримка 24/7",b8_desc:"Наша команда завжди на зв'язку. Вирішуємо будь-які питання.",
+    tag_calc:"Заробіток",calc_title:"Калькулятор доходу",calc_days_label:"Днів на тиждень",calc_hours_label:"Годин на день",
+    calc_daily:"На день",calc_weekly:"На тиждень",calc_monthly:"На місяць",calc_yearly:"На рік",
+    calc_note:"* Приблизний розрахунок після комісії 8%. Реальний дохід залежить від міста та активності.",
+    tag_steps:"Старт",steps_title:"Як почати роботу?",
+    s1_title:"Заповни анкету",s1_desc:"Натисни кнопку нижче та заповни форму в Telegram боті — займе 5 хвилин.",
+    s2_title:"Співбесіда",s2_desc:"Наш менеджер зв'яжеться з тобою, відповість на питання та розкаже умови.",
+    s3_title:"Оформлення",s3_desc:"Допомагаємо з документами, реєстрацією та підключенням до платформ.",
+    s4_title:"Починай заробляти!",s4_desc:"Обирай зручний графік і починай отримувати дохід вже з першого дня.",
+    steps_cta:"Почати →",
+    terms_title:"Вимоги до водія",
+    t1:"Вік від 21 року",t2:"Водійське посвідчення кат. B (стаж 3+ років)",t3:"Відсутність судимостей",t4:"Смартфон з інтернетом",t5:"Відповідальність та пунктуальність",t6:"Знання міста (бажано)",
+    docs_title:"Необхідні документи",
+    d1:"Закордонний паспорт, ВНЖ або Карта одиденца",d2:"Водійське посвідчення (мін. 3 роки)",d3:"Ліцензія таксиста (Preukaz vodiča taxislužby) — допомагаємо оформити",d4:"Довідка про несудимість",d5:"Трудовий договір або реєстрація ЖО (živnosť)",
+    docs_help:"Допомагаємо з оформленням усіх документів",
+    tag_cars:"Автомобіль",cars_title:"Оренда автомобіля",
+    cars_have_title:"У мене є своє авто",cars_have_desc:"Чудово! Підключаємо до платформ, допомагаємо з документами, обслуговуємо в нашому СТО за спеціальними цінами.",
+    cars_no_title:"У мене немає авто",cars_no_desc:"Пропонуємо оренду сучасних автомобілів на вигідних умовах. Починай заробляти без початкових вкладень.",
+    cars_cta:"Дізнатись про оренду →",
+    tag_ref:"Реферальна програма",ref_title:"Бонус за запрошеного друга",
+    ref_desc:"Запроси друга в GTA 777 та отримай 100€ після 4 тижнів його роботи. Без обмежень — запрошуй скільки завгодно!",
+    ref_friends_label:"Друзів запрошу:",ref_bonus_label:"Мій бонус:",ref_cta:"Запросити друга →",
+    tag_contacts:"Зв'язатись",contacts_title:"Контакти",contacts_sub:"Готовий почати? Напиши нам у Telegram — відповімо швидко.",
+    contacts_bot:"Telegram бот",contacts_cities:"Міста присутності",contacts_cta:"Відкрити Telegram бот",
+    footer_copy:"© 2026 GTA 777. Таксопарк Словаччина. Всі права захищені.",
+  },
+  sk: {
+    nav_calc:"Kalkulačka",nav_terms:"Podmienky",nav_docs:"Dokumenty",nav_cars:"Prenájom auta",nav_contacts:"Kontakty",nav_start:"Začať pracovať",
+    hero_badge:"Taxifleet · Slovensko",hero_tagline:"Pracuj za vlastných podmienok",
+    hero_sub:"Bolt • Uber • Bolt Food | Provízia <strong>8%</strong> | Výplaty každý pondelok",
+    hero_cta:"Začať pracovať →",hero_scroll:"Zistiť viac",
+    stat_commission:"Provízia",stat_bonus:"Bonus za priateľa",stat_cities:"Miest Slovenska",stat_support:"Podpora",
+    tag_benefits:"Výhody",benefits_title:"Prečo GTA 777?",
+    b1_title:"Provízia 8%",b1_desc:"Jedna z najnižších na trhu. Individuálne podmienky pre najlepších vodičov.",
+    b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Pracuj na všetkých vedúcich platformách súčasne.",
+    b3_title:"Výplaty každý pondelok",b3_desc:"Stabilne. Bez oneskorení. Každý týždeň na tvoj účet.",
+    b4_title:"Prenájom automobilu",b4_desc:"Nemáš vlastné auto? Nie je problém — prenajmi si u nás za výhodných podmienok.",
+    b5_title:"Vlastný autoservis",b5_desc:"Rýchly servis a oprava tvojho automobilu za znížené ceny.",
+    b6_title:"Bonus 100€ za priateľa",b6_desc:"Pozvi priateľa — získaj 100€ po 4 týždňoch jeho práce.",
+    b7_title:"Celé Slovensko",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov a ďalšie mestá.",
+    b8_title:"Podpora 24/7",b8_desc:"Náš tím je vždy k dispozícii. Riešime akékoľvek otázky.",
+    tag_calc:"Zárobky",calc_title:"Kalkulačka príjmu",calc_days_label:"Dní za týždeň",calc_hours_label:"Hodín za deň",
+    calc_daily:"Za deň",calc_weekly:"Za týždeň",calc_monthly:"Za mesiac",calc_yearly:"Za rok",
+    calc_note:"* Orientačný výpočet po provízii 8%. Skutočný príjem závisí od mesta a aktivity.",
+    tag_steps:"Štart",steps_title:"Ako začať pracovať?",
+    s1_title:"Vyplň dotazník",s1_desc:"Klikni na tlačidlo nižšie a vyplň formulár v Telegram bote — trvá 5 minút.",
+    s2_title:"Pohovor",s2_desc:"Náš manažér sa s tebou spojí, odpovie na otázky a vysvetlí podmienky.",
+    s3_title:"Vybavenie",s3_desc:"Pomáhame s dokumentmi, registráciou a pripojením na platformy.",
+    s4_title:"Začni zarábať!",s4_desc:"Vyber si vhodný rozvrh a začni zarábať už od prvého dňa.",
+    steps_cta:"Začať →",
+    terms_title:"Požiadavky na vodiča",
+    t1:"Vek od 21 rokov",t2:"Vodičský preukaz kat. B (prax 3+ rokov)",t3:"Bezúhonnosť (výpis z registra trestov)",t4:"Smartphone s internetom",t5:"Zodpovednosť a dochvíľnosť",t6:"Znalosť mesta (vítaná)",
+    docs_title:"Potrebné dokumenty",
+    d1:"Cestovný pas, ВНЖ alebo Karta odídenca",d2:"Vodičský preukaz (min. 3 roky praxe)",d3:"Preukaz vodiča taxislužby — pomáhame vybaviť",d4:"Výpis z registra trestov",d5:"Pracovná zmluva alebo registrácia živnosti (ŽO)",
+    docs_help:"Pomáhame s vybavením všetkých dokumentov",
+    tag_cars:"Vozidlo",cars_title:"Prenájom automobilu",
+    cars_have_title:"Mám vlastné auto",cars_have_desc:"Výborne! Pripájame na platformy, pomáhame s dokumentmi, zabezpečujeme servis za špeciálne ceny.",
+    cars_no_title:"Nemám auto",cars_no_desc:"Ponúkame prenájom moderných automobilov za výhodných podmienok. Začni zarábať bez počiatočnej investície.",
+    cars_cta:"Zistiť o prenájme →",
+    tag_ref:"Referálny program",ref_title:"Bonus za pozvaného priateľa",
+    ref_desc:"Pozvi priateľa do GTA 777 a získaj 100€ po 4 týždňoch jeho práce. Bez obmedzení — pozývaj koľko chceš!",
+    ref_friends_label:"Počet priateľov:",ref_bonus_label:"Môj bonus:",ref_cta:"Pozvať priateľa →",
+    tag_contacts:"Kontaktovať",contacts_title:"Kontakty",contacts_sub:"Pripravený začať? Napíš nám na Telegram — odpovieme rýchlo.",
+    contacts_bot:"Telegram bot",contacts_cities:"Mestá pôsobenia",contacts_cta:"Otvoriť Telegram bot",
+    footer_copy:"© 2026 GTA 777. Taxifleet Slovensko. Všetky práva vyhradené.",
+  },
+  en: {
+    nav_calc:"Calculator",nav_terms:"Terms",nav_docs:"Documents",nav_cars:"Car Rental",nav_contacts:"Contacts",nav_start:"Start Working",
+    hero_badge:"Taxi Fleet · Slovakia",hero_tagline:"Work on your own terms",
+    hero_sub:"Bolt • Uber • Bolt Food | <strong>8%</strong> Commission | Payouts Every Monday",
+    hero_cta:"Start Working →",hero_scroll:"Learn more",
+    stat_commission:"Commission",stat_bonus:"Referral Bonus",stat_cities:"Slovak Cities",stat_support:"Support",
+    tag_benefits:"Benefits",benefits_title:"Why GTA 777?",
+    b1_title:"8% Commission",b1_desc:"One of the lowest in the market. Individual terms for top drivers.",
+    b2_title:"Bolt + Uber + Bolt Food",b2_desc:"Work on all leading platforms simultaneously.",
+    b3_title:"Payouts Every Monday",b3_desc:"Stable. No delays. Every week to your account.",
+    b4_title:"Car Rental",b4_desc:"No car? No problem — rent from us at great rates.",
+    b5_title:"Own Auto Workshop",b5_desc:"Fast maintenance and repair of your car at discounted prices.",
+    b6_title:"100€ Referral Bonus",b6_desc:"Invite a friend — earn 100€ after 4 weeks of their work.",
+    b7_title:"All of Slovakia",b7_desc:"Bratislava, Žilina, Košice, Banská Bystrica, Prešov and other cities.",
+    b8_title:"24/7 Support",b8_desc:"Our team is always available. We solve any issues.",
+    tag_calc:"Earnings",calc_title:"Income Calculator",calc_days_label:"Days per week",calc_hours_label:"Hours per day",
+    calc_daily:"Per day",calc_weekly:"Per week",calc_monthly:"Per month",calc_yearly:"Per year",
+    calc_note:"* Estimated calculation after 8% commission. Actual income depends on city and activity.",
+    tag_steps:"Start",steps_title:"How to Start?",
+    s1_title:"Fill the Form",s1_desc:"Click the button below and fill the form in our Telegram bot — takes 5 minutes.",
+    s2_title:"Interview",s2_desc:"Our manager will contact you, answer questions and explain the terms.",
+    s3_title:"Documents",s3_desc:"We help with documents, registration and platform onboarding.",
+    s4_title:"Start Earning!",s4_desc:"Choose your schedule and start earning from day one.",
+    steps_cta:"Start →",
+    terms_title:"Driver Requirements",
+    t1:"Age 21+",t2:"Category B driving license (3+ years experience)",t3:"No criminal record",t4:"Smartphone with internet",t5:"Responsibility and punctuality",t6:"Knowledge of the city (preferred)",
+    docs_title:"Required Documents",
+    d1:"Passport, residence permit or refugee card",d2:"Driving license (min. 3 years)",d3:"Taxi driver license (Preukaz vodiča taxislužby) — we help obtain",d4:"Criminal record certificate",d5:"Employment contract or self-employment (živnosť)",
+    docs_help:"We help with all document processing",
+    tag_cars:"Vehicle",cars_title:"Car Rental",
+    cars_have_title:"I have my own car",cars_have_desc:"Great! We connect you to platforms, help with documents, and service your car at special prices.",
+    cars_no_title:"I don't have a car",cars_no_desc:"We offer rental of modern vehicles at great rates. Start earning without upfront investment.",
+    cars_cta:"Learn about rental →",
+    tag_ref:"Referral Program",ref_title:"Friend Referral Bonus",
+    ref_desc:"Invite a friend to GTA 777 and earn 100€ after 4 weeks of their work. No limits — invite as many as you want!",
+    ref_friends_label:"Friends I'll invite:",ref_bonus_label:"My bonus:",ref_cta:"Invite a friend →",
+    tag_contacts:"Contact",contacts_title:"Contacts",contacts_sub:"Ready to start? Message us on Telegram — we respond fast.",
+    contacts_bot:"Telegram bot",contacts_cities:"Coverage cities",contacts_cta:"Open Telegram bot",
+    footer_copy:"© 2026 GTA 777. Taxi Fleet Slovakia. All rights reserved.",
+  }
+};
+
+/* ══════════════════════ LANGUAGE SWITCHER ══════════════════════════════════ */
+let currentLang = 'ru';
+function setLang(lang) {
+  currentLang = lang;
+  const dict = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  document.documentElement.lang = lang;
+  updateCalc();
+}
+
+/* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
+const HOURLY_RATE = 11; // €/hr net after 8% commission
+function updateCalc() {
+  const days  = parseInt(document.getElementById('daysSlider').value);
+  const hours = parseInt(document.getElementById('hoursSlider').value);
+  const daily   = Math.round(hours * HOURLY_RATE);
+  const weekly  = daily * days;
+  const monthly = Math.round(weekly * 4.33);
+  const yearly  = weekly * 52;
+  document.getElementById('daysVal').textContent  = days;
+  document.getElementById('hoursVal').textContent = hours;
+  document.getElementById('dailyVal').textContent   = daily;
+  document.getElementById('weeklyVal').textContent  = weekly;
+  document.getElementById('monthlyVal').textContent = monthly;
+  document.getElementById('yearlyVal').textContent  = yearly.toLocaleString();
+}
+document.getElementById('daysSlider').addEventListener('input', updateCalc);
+document.getElementById('hoursSlider').addEventListener('input', updateCalc);
+updateCalc();
+
+/* ══════════════════════ REFERRAL CALCULATOR ════════════════════════════════ */
+function updateRef() {
+  const n = parseInt(document.getElementById('refSlider').value);
+  document.getElementById('refCount').textContent = n;
+  document.getElementById('refBonus').textContent = (n * 100) + '€';
+}
+document.getElementById('refSlider').addEventListener('input', updateRef);
+updateRef();
+
+/* ══════════════════════ PARTICLES ══════════════════════════════════════════ */
+(function() {
+  const container = document.getElementById('particles');
+  const count = 30;
+  const colors = ['rgba(255,107,0,', 'rgba(255,204,0,'];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 1;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const opacity = Math.random() * 0.6 + 0.2;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 15 + 10;
+    const delay = Math.random() * 20;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${left}%;bottom:-10px;
+      background:${color}${opacity});
+      box-shadow:0 0 ${size*3}px ${color}0.5);
+      animation-duration:${duration}s;
+      animation-delay:-${delay}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ══════════════════════ SCROLL REVEAL ══════════════════════════════════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ══════════════════════ HEADER SCROLL ══════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').style.background =
+    window.scrollY > 60 ? 'rgba(13,5,21,0.97)' : 'rgba(13,5,21,0.85)';
+});
+
+/* ══════════════════════ SMOOTH SCROLL ══════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
