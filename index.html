@@ -127,14 +127,18 @@ header {
   height: 68px;
   gap: 24px;
 }
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 3px;
-  color: var(--accent);
-  text-shadow: 0 0 20px rgba(255,204,0,0.5), 2px 2px 0 var(--primary);
-  flex-shrink: 0;
+.logo-wrap { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.logo-img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
+.footer-logo-wrap { display: flex; justify-content: center; }
+.footer-logo-img { height: 52px; }
 nav { display: flex; align-items: center; gap: 4px; }
 nav a {
   padding: 6px 14px;
@@ -634,38 +638,38 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
 /* ═══════════════════════════════ HOW TO START ══════════════════════════════ */
 #steps { background: var(--bg2); }
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  position: relative;
+/* ── Timeline steps ── */
+.steps-timeline { max-width: 600px; }
+.tl-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
-.steps-grid::before {
-  content: '';
-  position: absolute;
-  top: 48px; left: 12.5%; right: 12.5%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-  opacity: 0.3;
-  z-index: 0;
-}
-@media(max-width: 768px) { .steps-grid { grid-template-columns: 1fr 1fr; } .steps-grid::before { display: none; } }
-@media(max-width: 480px) { .steps-grid { grid-template-columns: 1fr; } }
-.step-card { text-align: center; position: relative; z-index: 1; }
-.step-num {
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #e55a00);
+.tl-num {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(255,107,0,0.12);
+  border: 2px solid rgba(255,107,0,0.35);
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  color: #fff;
+  font-size: 1.5rem;
+  color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  box-shadow: 0 0 24px rgba(255,107,0,0.4);
 }
-.step-title {
+.tl-line {
+  position: absolute;
+  left: 25px;
+  width: 2px;
+  height: 40px;
+  margin-top: 52px;
+  background: linear-gradient(to bottom, rgba(255,107,0,0.3), transparent);
+}
+.tl-item { position: relative; padding-bottom: 36px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-body { padding-top: 10px; }
+.tl-title {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
@@ -673,8 +677,90 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   margin-bottom: 10px;
   letter-spacing: 0.5px;
 }
-.step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
-.steps-cta { text-align: center; margin-top: 52px; }
+.tl-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+.steps-cta { text-align: left; margin-top: 40px; }
+
+/* ── FAQ accordion ── */
+#faq { background: var(--bg2); }
+.faq-list { max-width: 700px; display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  transition: color 0.2s;
+}
+.faq-q:hover, .faq-q.open { color: var(--primary); }
+.faq-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  color: var(--primary);
+  transition: transform 0.25s;
+  line-height: 1;
+}
+.faq-q.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s;
+}
+.faq-a.open { max-height: 300px; padding-bottom: 16px; }
+.faq-a p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; padding: 0 4px; }
+
+/* ── Contact form ── */
+.contact-form-block {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 36px;
+  margin-top: 48px;
+}
+.contact-form-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.contact-form-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; }
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+.cf-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cf-input::placeholder { color: rgba(255,255,255,0.3); }
+.cf-input:focus { border-color: var(--primary); }
+.cf-textarea { resize: vertical; min-height: 90px; }
+.cf-submit { margin-top: 4px; width: 100%; font-size: 1rem; padding: 16px; border-radius: 12px; }
+.cf-success { text-align: center; padding: 24px; }
+.cf-success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.cf-success p { color: rgba(255,255,255,0.8); font-size: 1rem; }
+.btn-outline-primary {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+.btn-outline-primary:hover { background: var(--primary); color: #fff; }
 
 /* ═══════════════════════════════ TERMS + DOCS ══════════════════════════════ */
 #termdocs { background: var(--bg3); }
@@ -960,13 +1046,7 @@ footer {
   flex-wrap: wrap;
   gap: 16px;
 }
-.footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  letter-spacing: 3px;
-  color: var(--accent);
-  text-shadow: 1px 1px 0 var(--primary);
-}
+/* footer-logo-wrap handled above */
 .footer-copy { font-size: 0.82rem; color: var(--muted); }
 .footer-langs { display: flex; gap: 6px; }
 
@@ -1030,7 +1110,9 @@ footer {
 <!-- ═══════════════════════════ HEADER ════════════════════════════════════ -->
 <header>
   <div class="container header-inner">
-    <div class="logo">Trojan Fleet</div>
+    <a href="#" class="logo-wrap">
+      <img src="logo.png" alt="Trojan Fleet" class="logo-img">
+    </a>
     <nav>
       <a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
       <a href="#termdocs"   data-i18n="nav_terms">Условия</a>
@@ -1248,26 +1330,38 @@ footer {
   <div class="container">
     <div class="tag" data-i18n="tag_steps">Старт</div>
     <h2 class="section-title" data-i18n="steps_title">Как начать работу?</h2>
-    <div class="steps-grid">
-      <div class="step-card reveal reveal-d1">
-        <div class="step-num">1</div>
-        <div class="step-title" data-i18n="s1_title">Заполни анкету</div>
-        <div class="step-desc" data-i18n="s1_desc">Нажми кнопку ниже и заполни форму в Telegram боте — займёт 5 минут.</div>
+    <div class="steps-timeline">
+      <div class="tl-item reveal">
+        <div class="tl-num">1</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" data-i18n="s1_title">Заполни анкету</div>
+          <div class="tl-desc" data-i18n="s1_desc">Нажми кнопку ниже и заполни форму в Telegram боте — займёт 5 минут.</div>
+        </div>
       </div>
-      <div class="step-card reveal reveal-d2">
-        <div class="step-num">2</div>
-        <div class="step-title" data-i18n="s2_title">Собеседование</div>
-        <div class="step-desc" data-i18n="s2_desc">Наш менеджер свяжется с тобой, ответит на вопросы и расскажет условия.</div>
+      <div class="tl-item reveal">
+        <div class="tl-num">2</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" data-i18n="s2_title">Собеседование</div>
+          <div class="tl-desc" data-i18n="s2_desc">Наш менеджер свяжется с тобой, ответит на вопросы и расскажет условия.</div>
+        </div>
       </div>
-      <div class="step-card reveal reveal-d3">
-        <div class="step-num">3</div>
-        <div class="step-title" data-i18n="s3_title">Оформление</div>
-        <div class="step-desc" data-i18n="s3_desc">Помогаем с документами, регистрацией и подключением к платформам.</div>
+      <div class="tl-item reveal">
+        <div class="tl-num">3</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" data-i18n="s3_title">Оформление</div>
+          <div class="tl-desc" data-i18n="s3_desc">Помогаем с документами, регистрацией и подключением к платформам.</div>
+        </div>
       </div>
-      <div class="step-card reveal reveal-d4">
-        <div class="step-num">4</div>
-        <div class="step-title" data-i18n="s4_title">Начинай зарабатывать!</div>
-        <div class="step-desc" data-i18n="s4_desc">Выбирай удобный график и начинай получать доход уже с первого дня.</div>
+      <div class="tl-item reveal">
+        <div class="tl-num">4</div>
+        <div class="tl-line" style="display:none"></div>
+        <div class="tl-body">
+          <div class="tl-title" data-i18n="s4_title">Начинай зарабатывать!</div>
+          <div class="tl-desc" data-i18n="s4_desc">Выбирай удобный график и начинай получать доход уже с первого дня.</div>
+        </div>
       </div>
     </div>
     <div class="steps-cta reveal">
@@ -1427,6 +1521,44 @@ footer {
   </div>
 </section>
 
+<!-- ═══════════════════════════ FAQ ═══════════════════════════════════════ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="tag" data-i18n="tag_faq">FAQ</div>
+    <h2 class="section-title" data-i18n="faq_title">Частые вопросы</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_q1">У меня нет машины. Могу ли я работать?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p data-i18n="faq_a1">Да! Мы предлагаем аренду современных автомобилей на выгодных условиях. Вы можете начать зарабатывать без начальных вложений — просто выберите подходящий автомобиль и выходите на линию.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_q2">Нужен ли опыт работы в такси?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p data-i18n="faq_a2">Опыт не обязателен! Приложение Bolt автоматически прокладывает маршрут. Нужны только водительские права категории B и базовые навыки работы со смартфоном.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_q3">Что делать, если нет лицензии таксиста?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p data-i18n="faq_a3">Не проблема! Наша команда поможет оформить лицензию таксиста (Preukaz vodiča taxislužby) в кратчайшие сроки. Мы знаем все требования и сопроводим вас на каждом этапе.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_q4">На каких платформах можно работать?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p data-i18n="faq_a4">Мы подключаем к Bolt, Uber и Bolt Food. Можно работать на всех трёх платформах одновременно и выбирать самые выгодные заказы. Комиссия Trojan Fleet — всего 8%.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════ CONTACTS ══════════════════════════════════ -->
 <section id="contacts" class="section">
   <div class="container">
@@ -1456,9 +1588,26 @@ footer {
         </div>
       </div>
     </div>
+    <div class="contact-form-block reveal">
+      <h3 class="contact-form-title" data-i18n="form_title">Оставить заявку</h3>
+      <p class="contact-form-sub" data-i18n="form_sub">Заполните форму — менеджер свяжется с вами в течение 30 минут</p>
+      <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event)">
+        <input type="text"  id="cf-name"    name="name"    class="cf-input" required
+               data-i18n-ph="form_ph_name" placeholder="Ваше имя">
+        <input type="tel"   id="cf-phone"   name="phone"   class="cf-input" required
+               data-i18n-ph="form_ph_phone" placeholder="+421 900 000 000">
+        <textarea           id="cf-message" name="message" class="cf-input cf-textarea" rows="3"
+               data-i18n-ph="form_ph_msg" placeholder="Сообщение (необязательно)"></textarea>
+        <button type="submit" class="btn btn-primary cf-submit" data-i18n="form_submit">Отправить заявку →</button>
+      </form>
+      <div class="cf-success" id="cfSuccess" style="display:none">
+        <div class="cf-success-icon">✅</div>
+        <p data-i18n="form_success">Заявка отправлена! Мы свяжемся с вами в ближайшее время.</p>
+      </div>
+    </div>
     <div class="contacts-main-cta reveal">
-      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.15rem;padding:18px 48px;">
-        🚖 <span data-i18n="contacts_cta">Открыть Telegram бот</span>
+      <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-outline-primary" style="font-size:1.15rem;padding:18px 48px;">
+        ✈️ <span data-i18n="contacts_cta">Открыть Telegram бот</span>
       </a>
     </div>
   </div>
@@ -1467,7 +1616,9 @@ footer {
 <!-- ═══════════════════════════ FOOTER ════════════════════════════════════ -->
 <footer>
   <div class="container footer-inner">
-    <div class="footer-logo">Trojan Fleet</div>
+    <div class="footer-logo-wrap">
+      <img src="logo.png" alt="Trojan Fleet" class="logo-img footer-logo-img">
+    </div>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 Trojan Fleet. Таксопарк Словакия.</div>
     <div class="footer-langs">
       <button class="lang-btn active" onclick="setLang('ru')">RU</button>
@@ -1534,6 +1685,14 @@ const T = {
     c_no_license:"Водительские права не нужны!",
     tag_contacts:"Связаться",contacts_title:"Контакты",contacts_sub:"Готов начать? Напиши нам в Telegram — ответим быстро.",
     contacts_bot:"Telegram бот",contacts_cities:"Города присутствия",contacts_cta:"Открыть Telegram бот",
+    tag_faq:"FAQ",faq_title:"Частые вопросы",
+    faq_q1:"У меня нет машины. Могу ли я работать?",faq_a1:"Да! Мы предлагаем аренду современных автомобилей на выгодных условиях. Вы можете начать зарабатывать без начальных вложений — просто выберите подходящий автомобиль и выходите на линию.",
+    faq_q2:"Нужен ли опыт работы в такси?",faq_a2:"Опыт не обязателен! Приложение Bolt автоматически прокладывает маршрут. Нужны только права категории B и базовые навыки работы со смартфоном.",
+    faq_q3:"Что делать, если нет лицензии таксиста?",faq_a3:"Не проблема! Наша команда поможет оформить лицензию таксиста (Preukaz vodiča taxislužby) в кратчайшие сроки.",
+    faq_q4:"На каких платформах можно работать?",faq_a4:"Мы подключаем к Bolt, Uber и Bolt Food. Можно работать на всех трёх платформах одновременно. Комиссия Trojan Fleet — всего 8%.",
+    form_title:"Оставить заявку",form_sub:"Заполните форму — менеджер свяжется с вами в течение 30 минут",
+    form_ph_name:"Ваше имя",form_ph_phone:"+421 900 000 000",form_ph_msg:"Сообщение (необязательно)",
+    form_submit:"Отправить заявку →",form_success:"Заявка отправлена! Мы свяжемся с вами в ближайшее время.",
     gallery_fleet:"Наш автопарк",gallery_slovakia:"Работаем по всей Словакии",
     city_capital:"Столица Словакии",city_zilina:"Север Словакии",city_kosice:"Восток Словакии",city_bb:"Центр Словакии",
     footer_copy:"© 2026 Trojan Fleet. Таксопарк Словакия. Все права защищены.",
@@ -1584,6 +1743,14 @@ const T = {
     c_no_license:"Водійські права не потрібні!",
     tag_contacts:"Зв'язатись",contacts_title:"Контакти",contacts_sub:"Готовий почати? Напиши нам у Telegram — відповімо швидко.",
     contacts_bot:"Telegram бот",contacts_cities:"Міста присутності",contacts_cta:"Відкрити Telegram бот",
+    tag_faq:"FAQ",faq_title:"Часті питання",
+    faq_q1:"У мене немає машини. Чи можу я працювати?",faq_a1:"Так! Ми пропонуємо оренду сучасних автомобілів на вигідних умовах. Ви можете почати заробляти без початкових вкладень.",
+    faq_q2:"Чи потрібен досвід роботи в таксі?",faq_a2:"Досвід не обов'язковий! Додаток Bolt автоматично прокладає маршрут. Потрібні лише права категорії B та базові навички роботи зі смартфоном.",
+    faq_q3:"Що робити, якщо немає ліцензії таксиста?",faq_a3:"Не проблема! Наша команда допоможе оформити ліцензію таксиста (Preukaz vodiča taxislužby) у найкоротші терміни.",
+    faq_q4:"На яких платформах можна працювати?",faq_a4:"Ми підключаємо до Bolt, Uber та Bolt Food. Можна працювати на всіх трьох платформах одночасно. Комісія Trojan Fleet — лише 8%.",
+    form_title:"Залишити заявку",form_sub:"Заповніть форму — менеджер зв'яжеться з вами протягом 30 хвилин",
+    form_ph_name:"Ваше ім'я",form_ph_phone:"+421 900 000 000",form_ph_msg:"Повідомлення (необов'язково)",
+    form_submit:"Надіслати заявку →",form_success:"Заявку надіслано! Ми зв'яжемося з вами найближчим часом.",
     gallery_fleet:"Наш автопарк",gallery_slovakia:"Працюємо по всій Словаччині",
     city_capital:"Столиця Словаччини",city_zilina:"Північ Словаччини",city_kosice:"Схід Словаччини",city_bb:"Центр Словаччини",
     footer_copy:"© 2026 Trojan Fleet. Таксопарк Словаччина. Всі права захищені.",
@@ -1634,6 +1801,14 @@ const T = {
     c_no_license:"Vodičský preukaz nie je potrebný!",
     tag_contacts:"Kontaktovať",contacts_title:"Kontakty",contacts_sub:"Pripravený začať? Napíš nám na Telegram — odpovieme rýchlo.",
     contacts_bot:"Telegram bot",contacts_cities:"Mestá pôsobenia",contacts_cta:"Otvoriť Telegram bot",
+    tag_faq:"FAQ",faq_title:"Časté otázky",
+    faq_q1:"Nemám auto. Môžem pracovať?",faq_a1:"Áno! Ponúkame prenájom moderných automobilov za výhodných podmienok. Môžete začať zarábať bez počiatočnej investície.",
+    faq_q2:"Je potrebná skúsenosť s taxislužbou?",faq_a2:"Skúsenosť nie je potrebná! Aplikácia Bolt automaticky naplánuje trasu. Potrebujete len vodičský preukaz kat. B a základné zručnosti so smartfónom.",
+    faq_q3:"Čo robiť, ak nemám preukaz vodiča taxislužby?",faq_a3:"Nie je problém! Náš tím vám pomôže vybaviť preukaz vodiča taxislužby v čo najkratšom čase.",
+    faq_q4:"Na ktorých platformách môžem pracovať?",faq_a4:"Pripájame k Bolt, Uber a Bolt Food. Môžete pracovať na všetkých troch platformách súčasne. Provízia Trojan Fleet — len 8%.",
+    form_title:"Zanechať žiadosť",form_sub:"Vyplňte formulár — manažér vás kontaktuje do 30 minút",
+    form_ph_name:"Vaše meno",form_ph_phone:"+421 900 000 000",form_ph_msg:"Správa (voliteľné)",
+    form_submit:"Odoslať žiadosť →",form_success:"Žiadosť odoslaná! Čoskoro vás budeme kontaktovať.",
     gallery_fleet:"Náš vozový park",gallery_slovakia:"Pôsobíme po celom Slovensku",
     city_capital:"Hlavné mesto Slovenska",city_zilina:"Sever Slovenska",city_kosice:"Východ Slovenska",city_bb:"Stred Slovenska",
     footer_copy:"© 2026 Trojan Fleet. Taxifleet Slovensko. Všetky práva vyhradené.",
@@ -1684,6 +1859,14 @@ const T = {
     c_no_license:"No driver's license required!",
     tag_contacts:"Contact",contacts_title:"Contacts",contacts_sub:"Ready to start? Message us on Telegram — we respond fast.",
     contacts_bot:"Telegram bot",contacts_cities:"Coverage cities",contacts_cta:"Open Telegram bot",
+    tag_faq:"FAQ",faq_title:"Frequently Asked Questions",
+    faq_q1:"I don't have a car. Can I still work?",faq_a1:"Yes! We offer modern car rentals at great rates. You can start earning without any upfront investment — just pick a car and hit the road.",
+    faq_q2:"Is taxi experience required?",faq_a2:"No experience needed! The Bolt app automatically navigates routes. You just need a category B license and basic smartphone skills.",
+    faq_q3:"What if I don't have a taxi license?",faq_a3:"No problem! Our team will help you obtain the taxi driver license (Preukaz vodiča taxislužby) as quickly as possible.",
+    faq_q4:"Which platforms can I work on?",faq_a4:"We connect you to Bolt, Uber, and Bolt Food. You can work on all three platforms simultaneously. Trojan Fleet commission — just 8%.",
+    form_title:"Send a Request",form_sub:"Fill in the form — our manager will contact you within 30 minutes",
+    form_ph_name:"Your name",form_ph_phone:"+421 900 000 000",form_ph_msg:"Message (optional)",
+    form_submit:"Submit Request →",form_success:"Request sent! We will contact you shortly.",
     gallery_fleet:"Our Fleet",gallery_slovakia:"Operating across Slovakia",
     city_capital:"Capital of Slovakia",city_zilina:"Northern Slovakia",city_kosice:"Eastern Slovakia",city_bb:"Central Slovakia",
     footer_copy:"© 2026 Trojan Fleet. Taxi Fleet Slovakia. All rights reserved.",
@@ -1699,11 +1882,45 @@ function setLang(lang) {
     const key = el.dataset.i18n;
     if (dict[key] !== undefined) el.innerHTML = dict[key];
   });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
   });
   document.documentElement.lang = lang;
   updateCalc();
+}
+
+/* ══════════════════════ FAQ ACCORDION ══════════════════════════════════════ */
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+/* ══════════════════════ CONTACT FORM ═══════════════════════════════════════ */
+function submitContactForm(e) {
+  e.preventDefault();
+  const name  = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const msg   = document.getElementById('cf-message').value.trim();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('cfSuccess').style.display = 'flex';
+  document.getElementById('cfSuccess').style.flexDirection = 'column';
+  document.getElementById('cfSuccess').style.alignItems = 'center';
+  const text = `📋 Заявка с сайта Trojan Fleet\n👤 Имя: ${name}\n📱 Телефон: ${phone}${msg ? '\n💬 ' + msg : ''}`;
+  setTimeout(() => {
+    window.open('https://t.me/gta777_drivers_bot?text=' + encodeURIComponent(text), '_blank');
+  }, 800);
 }
 
 /* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
