@@ -241,29 +241,14 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
   0%, 100% { box-shadow: 0 0 0 rgba(255,107,0,0); }
   50%       { box-shadow: 0 0 20px rgba(255,107,0,0.3); }
 }
-.hero-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 18vw, 13rem);
-  line-height: 0.9;
-  color: var(--accent);
-  -webkit-text-stroke: 3px var(--primary);
-  text-shadow:
-    4px 4px 0 var(--primary),
-    8px 8px 0 rgba(255,107,0,0.4),
-    0 0 60px rgba(255,204,0,0.6),
-    0 0 120px rgba(255,107,0,0.3);
-  letter-spacing: 6px;
-  animation: logo-flicker 8s ease-in-out infinite;
+.hero-logo-img {
+  width: clamp(260px, 55vw, 480px);
+  max-width: 100%;
   display: block;
-}
-.hero-logo-2 {
-  color: var(--primary);
-  -webkit-text-stroke: 3px var(--accent);
-  text-shadow:
-    4px 4px 0 var(--accent),
-    8px 8px 0 rgba(255,204,0,0.3),
-    0 0 60px rgba(255,107,0,0.7),
-    0 0 120px rgba(255,107,0,0.3);
+  margin: 0 auto 8px;
+  mix-blend-mode: screen;
+  animation: logo-flicker 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 40px rgba(255,107,0,0.5));
 }
 @keyframes logo-flicker {
   0%, 93%, 95%, 97%, 100% { opacity: 1; }
@@ -1164,7 +1149,7 @@ footer {
       <span>🏎</span>
       <span data-i18n="hero_badge">Таксопарк · Словакия</span>
     </div>
-    <span class="hero-logo">TROJAN<br><span class="hero-logo-2">FLEET</span></span>
+    <img src="logo-dark.jpg" class="hero-logo-img reveal" alt="Trojan Fleet">
     <div class="hero-tagline reveal" data-i18n="hero_tagline">Работай на своих условиях</div>
     <div class="hero-sub reveal">
       <span data-i18n="hero_sub">Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник</span>
@@ -1908,19 +1893,24 @@ function toggleFaq(btn) {
 }
 
 /* ══════════════════════ CONTACT FORM ═══════════════════════════════════════ */
-function submitContactForm(e) {
+async function submitContactForm(e) {
   e.preventDefault();
   const name  = document.getElementById('cf-name').value.trim();
   const phone = document.getElementById('cf-phone').value.trim();
   const msg   = document.getElementById('cf-message').value.trim();
+  const btn   = document.querySelector('.cf-submit');
+  if (btn) { btn.disabled = true; }
+  try {
+    await fetch('https://YOUR_SERVICE.up.railway.app/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, message: msg, secret: 'CONTACT_SECRET' })
+    });
+  } catch(err) { console.error('Contact form error:', err); }
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('cfSuccess').style.display = 'flex';
   document.getElementById('cfSuccess').style.flexDirection = 'column';
   document.getElementById('cfSuccess').style.alignItems = 'center';
-  const text = `📋 Заявка с сайта Trojan Fleet\n👤 Имя: ${name}\n📱 Телефон: ${phone}${msg ? '\n💬 ' + msg : ''}`;
-  setTimeout(() => {
-    window.open('https://t.me/gta777_drivers_bot?text=' + encodeURIComponent(text), '_blank');
-  }, 800);
 }
 
 /* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
