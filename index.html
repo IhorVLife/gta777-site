@@ -621,6 +621,93 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .calc-item-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
 .calc-note { font-size: 0.75rem; color: var(--muted); margin-top: 20px; line-height: 1.5; }
 
+/* ═════════════════════════ DRIVER PROMO BANNER ══════════════════════════════ */
+.driver-banner {
+  position: relative; overflow: hidden;
+  height: clamp(320px, 50vw, 480px);
+  display: flex; align-items: center;
+}
+.driver-banner-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e8e3?w=1400&q=80&auto=format&fit=crop') center/cover no-repeat;
+}
+.driver-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,10,26,0.95) 45%, rgba(10,10,26,0.2) 100%);
+}
+.driver-banner-content {
+  position: relative; z-index: 2;
+  padding: 0 clamp(20px,5vw,80px); max-width: 640px;
+}
+.driver-banner-tag {
+  font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 14px;
+}
+.driver-banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 7vw, 3.8rem);
+  color: #fff; line-height: 1; margin-bottom: 16px;
+}
+.driver-banner-title span { color: var(--primary); }
+.driver-banner-sub { color: rgba(255,255,255,0.65); font-size: clamp(0.9rem,2vw,1.05rem); line-height: 1.65; margin-bottom: 28px; max-width: 420px; }
+.driver-banner-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.dbs-item { text-align: left; }
+.dbs-num { font-family: 'Bebas Neue'; font-size: 2.2rem; color: var(--primary); line-height: 1; }
+.dbs-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+
+/* ══════════════════════ DOCS HELP SECTION ═══════════════════════════════════ */
+#docshelp { background: var(--bg3); }
+.dochelp-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 36px;
+}
+@media(max-width:700px){ .dochelp-grid{ grid-template-columns:1fr; } }
+.dochelp-card {
+  background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 24px 20px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: var(--trans);
+}
+.dochelp-card:hover { border-color: rgba(255,107,0,0.25); transform: translateY(-3px); }
+.dochelp-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+.dochelp-title { font-weight: 600; font-size: 0.97rem; margin-bottom: 6px; }
+.dochelp-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+.dochelp-time { display: inline-block; font-size: 0.72rem; color: var(--primary); font-weight: 600; margin-top: 10px; background: rgba(255,107,0,0.1); padding: 3px 10px; border-radius: 20px; }
+
+/* ══════════════════════ LANDLORD SECTION ════════════════════════════════════ */
+#landlords { background: var(--bg2); }
+.landlord-card {
+  background: linear-gradient(135deg, rgba(255,107,0,0.06) 0%, rgba(10,10,26,0) 100%);
+  border: 1px solid rgba(255,107,0,0.18);
+  border-radius: 20px; padding: clamp(28px,5vw,48px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+@media(max-width:700px){ .landlord-card{ grid-template-columns:1fr; gap:28px; } }
+.landlord-left-icon { font-size: 3.5rem; margin-bottom: 16px; }
+.landlord-title { font-family:'Bebas Neue'; font-size: clamp(1.8rem,5vw,2.6rem); line-height:1; margin-bottom:14px; }
+.landlord-desc { color: var(--muted); font-size: 0.93rem; line-height: 1.7; margin-bottom: 24px; }
+.landlord-features { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.landlord-features li { display:flex; align-items:center; gap:12px; font-size:0.93rem; }
+.lf-icon { font-size:1.3rem; flex-shrink:0; }
+
+/* ══════════════════════ CALC CONTRACT CHECKBOX ══════════════════════════════ */
+.calc-contract-wrap {
+  display:flex; align-items:center; gap:12px; cursor:pointer;
+  padding:14px 16px; background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08); border-radius:10px; user-select:none;
+}
+.calc-contract-wrap:has(input:checked){ border-color:rgba(255,107,0,0.35); background:rgba(255,107,0,0.06); }
+.calc-contract-wrap input[type=checkbox]{ width:18px;height:18px;accent-color:var(--primary);cursor:pointer;flex-shrink:0; }
+.calc-contract-lbl { font-size:0.88rem;font-weight:500; }
+.calc-contract-sub { font-size:0.72rem;color:var(--muted);margin-top:2px; }
+.calc-rows { display:flex;flex-direction:column;gap:10px;margin-top:20px;border-top:1px solid rgba(255,107,0,0.1);padding-top:20px; }
+.calc-row { display:flex;justify-content:space-between;align-items:center; }
+.calc-row-lbl { font-size:0.8rem;color:var(--muted); }
+.calc-row-val { font-family:'Bebas Neue';font-size:1.3rem;color:var(--text); }
+.calc-row-val.minus { color:#ff6b6b; }
+.calc-row.total { border-top:1px solid rgba(255,255,255,0.1);padding-top:10px;margin-top:4px; }
+.calc-row.total .calc-row-lbl { color:var(--text);font-weight:600;font-size:0.88rem; }
+.calc-row.total .calc-row-val { font-size:1.8rem;color:var(--primary); }
+
 /* ═══════════════════════════════ HOW TO START ══════════════════════════════ */
 #steps { background: var(--bg2); }
 /* ── Timeline steps ── */
@@ -1212,7 +1299,7 @@ footer {
             <div class="city-sub" data-i18n="city_kosice">Восток Словакии</div>
           </div>
         </div>
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1694720915560-da38521f98ea?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1562137740-7b8945c0fcd3?w=700&q=80&auto=format&fit=crop')">
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏔 Banská Bystrica</div>
@@ -1223,6 +1310,22 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════ DRIVER PROMO BANNER ══════════════════════════ -->
+<div class="driver-banner">
+  <div class="driver-banner-bg"></div>
+  <div class="driver-banner-overlay"></div>
+  <div class="driver-banner-content">
+    <div class="driver-banner-tag">Trojan Fleet Slovakia</div>
+    <div class="driver-banner-title">Зарабатывай<br><span>на своих условиях</span></div>
+    <div class="driver-banner-sub">Гибкий график, стабильные выплаты каждый понедельник и полная поддержка с первого дня — от документов до платформ.</div>
+    <div class="driver-banner-stats">
+      <div class="dbs-item"><div class="dbs-num">8%</div><div class="dbs-lbl">Комиссия парка</div></div>
+      <div class="dbs-item"><div class="dbs-num">€100</div><div class="dbs-lbl">Бонус за друга</div></div>
+      <div class="dbs-item"><div class="dbs-num">24/7</div><div class="dbs-lbl">Поддержка</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════ BENEFITS ══════════════════════════════════ -->
 <section id="benefits" class="section">
@@ -1295,16 +1398,39 @@ footer {
           </label>
           <input type="range" id="hoursSlider" min="4" max="16" value="8">
         </div>
-        <p class="calc-note" data-i18n="calc_note">* Примерный расчёт после комиссии 8%. Реальный доход зависит от города и активности.</p>
+        <label class="calc-contract-wrap" style="margin-top:8px;">
+          <input type="checkbox" id="contractCheck">
+          <div>
+            <div class="calc-contract-lbl">📄 Официальный договор</div>
+            <div class="calc-contract-sub">Trудоустройство — 15€/нед · официальный статус</div>
+          </div>
+        </label>
+        <p class="calc-note" style="margin-top:12px;">* Примерный расчёт. Реальный доход зависит от города и активности.</p>
       </div>
 
       <div class="calc-result reveal">
-        <div class="calc-main-label" data-i18n="calc_weekly">Ориентировочный доход за неделю</div>
+        <div class="calc-main-label" data-i18n="calc_weekly">Выплата на карту за неделю</div>
         <div class="calc-main-val">
           <span id="weeklyVal">552</span><span class="calc-main-currency">€</span>
         </div>
-        <div class="calc-commission-badge">— 8% <span data-i18n="stat_commission">Комиссия</span></div>
-        <p class="calc-note" data-i18n="calc_note">* Примерный расчёт. Реальный доход зависит от города и активности.</p>
+        <div class="calc-rows">
+          <div class="calc-row">
+            <span class="calc-row-lbl">Валовой заработок</span>
+            <span class="calc-row-val" id="calcGross">600€</span>
+          </div>
+          <div class="calc-row">
+            <span class="calc-row-lbl">Комиссия парка 8%</span>
+            <span class="calc-row-val minus" id="calcFee">-48€</span>
+          </div>
+          <div class="calc-row" id="calcContractRow" style="display:none">
+            <span class="calc-row-lbl">Официальный договор</span>
+            <span class="calc-row-val minus">-15€</span>
+          </div>
+          <div class="calc-row total">
+            <span class="calc-row-lbl">Выплата на карту</span>
+            <span class="calc-row-val" id="calcNet">552€</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1353,6 +1479,49 @@ footer {
       <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">
         🚖 <span data-i18n="steps_cta">Начать →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DOCS HELP ════════════════════════════════════ -->
+<section id="docshelp" class="section">
+  <div class="container">
+    <div class="tag">Документы</div>
+    <h2 class="section-title">Помощь с документами</h2>
+    <p class="section-sub">Берём на себя все документальные вопросы — от лицензии таксиста до продления ВНЖ.</p>
+    <div class="dochelp-grid">
+      <div class="dochelp-card reveal">
+        <div class="dochelp-icon">📋</div>
+        <div>
+          <div class="dochelp-title">Лицензия таксиста</div>
+          <div class="dochelp-desc">Preukaz vodiča taxislužby — оформляем полный пакет документов под ключ.</div>
+          <div class="dochelp-time">⏱ 20–40 дней</div>
+        </div>
+      </div>
+      <div class="dochelp-card reveal">
+        <div class="dochelp-icon">📄</div>
+        <div>
+          <div class="dochelp-title">Концессия</div>
+          <div class="dochelp-desc">Разрешение на таксомоторные перевозки — помогаем оформить с нуля.</div>
+          <div class="dochelp-time">⏱ 15–30 дней</div>
+        </div>
+      </div>
+      <div class="dochelp-card reveal">
+        <div class="dochelp-icon">🪪</div>
+        <div>
+          <div class="dochelp-title">ВНЖ — оформление и продление</div>
+          <div class="dochelp-desc">Помогаем с оформлением вида на жительство и его своевременным продлением.</div>
+          <div class="dochelp-time">✅ Ежедневно</div>
+        </div>
+      </div>
+      <div class="dochelp-card reveal">
+        <div class="dochelp-icon">🏢</div>
+        <div>
+          <div class="dochelp-title">Podpora z Úradu práce</div>
+          <div class="dochelp-desc">Подтверждение занятости с Úradu práce для продления ВНЖ — делаем быстро.</div>
+          <div class="dochelp-time">✅ Рабочий день</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1477,6 +1646,27 @@ footer {
   </div>
 </section>
 
+<!-- ═══════════════════════ ДЛЯ АРЕНДОДАТЕЛЕЙ ════════════════════════════ -->
+<section id="landlords" class="section">
+  <div class="container">
+    <div class="landlord-card reveal">
+      <div>
+        <div class="landlord-left-icon">🚘</div>
+        <div class="landlord-title">Для тех, кто сдаёт авто под такси</div>
+        <div class="landlord-desc">Автоматизированная система управления арендой: платежи списываются с водителей и переводятся на ваш IBAN каждую неделю — без ручного контроля.</div>
+        <a href="https://t.me/gta777_drivers_bot" target="_blank" rel="noopener" class="btn btn-primary">📩 Узнать подробнее</a>
+      </div>
+      <ul class="landlord-features">
+        <li><span class="lf-icon">💳</span> Автосписание аренды с водителей</li>
+        <li><span class="lf-icon">🏦</span> Перевод на ваш IBAN каждый понедельник</li>
+        <li><span class="lf-icon">📊</span> Полная прозрачность и отчётность</li>
+        <li><span class="lf-icon">📄</span> Официальный договор аренды</li>
+        <li><span class="lf-icon">🛡️</span> Контроль документов водителей</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════ REFERRAL ══════════════════════════════════ -->
 <section id="referral" class="section">
   <div class="container">
@@ -1539,6 +1729,48 @@ footer {
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a"><p data-i18n="faq_a4">Мы подключаем к Bolt, Uber и Bolt Food. Можно работать на всех трёх платформах одновременно и выбирать самые выгодные заказы. Комиссия Trojan Fleet — всего 8%.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Можно работать по своему графику?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Да, вы сами выбираете дни и часы. Минимума по часам нет — выходите на линию когда удобно.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Нужно ли знать словацкий язык?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Нет. Базовых навыков смартфона достаточно — Bolt сам строит маршрут и переводит общение с пассажиром в чате.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Какие машины подходят для работы?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Авто 2007 года и новее. Автомат или механика, любой класс — Economy, Comfort, XL или Premium. Если своего нет — поможем с арендой.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Помогаете с ВНЖ и Úradom práce?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Да. Оформляем документы на ВНЖ, продление и подтверждение с Úradu práce — работаем с этим ежедневно.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Я уже в другом таксопарке — могу перейти?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Да, переключение в Bolt/Uber обычно занимает 10–20 минут. Помогаем оформить переход без простоя.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Что такое официальный договор за 15€/нед?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Официальное трудоустройство: мы оформляем договор, платим налоги, ведём бухгалтерию. Стоит 15€/нед — это даёт официальный статус занятости и подтверждение для Úradu práce.</p></div>
       </div>
     </div>
   </div>
@@ -1915,15 +2147,23 @@ async function submitContactForm(e) {
 
 /* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
 function updateCalc() {
-  const days  = parseInt(document.getElementById('daysSlider').value);
-  const hours = parseInt(document.getElementById('hoursSlider').value);
-  const weekly = Math.round(days * hours * 15 * 0.92);
-  document.getElementById('daysVal').textContent   = days;
-  document.getElementById('hoursVal').textContent  = hours;
-  document.getElementById('weeklyVal').textContent = weekly;
+  const days     = parseInt(document.getElementById('daysSlider').value);
+  const hours    = parseInt(document.getElementById('hoursSlider').value);
+  const contract = document.getElementById('contractCheck').checked;
+  const gross    = Math.round(days * hours * 15);
+  const fee      = Math.round(gross * 0.08);
+  const net      = gross - fee - (contract ? 15 : 0);
+  document.getElementById('daysVal').textContent      = days;
+  document.getElementById('hoursVal').textContent     = hours;
+  document.getElementById('weeklyVal').textContent    = net;
+  document.getElementById('calcGross').textContent    = gross + '€';
+  document.getElementById('calcFee').textContent      = '−' + fee + '€';
+  document.getElementById('calcNet').textContent      = net + '€';
+  document.getElementById('calcContractRow').style.display = contract ? 'flex' : 'none';
 }
 document.getElementById('daysSlider').addEventListener('input', updateCalc);
 document.getElementById('hoursSlider').addEventListener('input', updateCalc);
+document.getElementById('contractCheck').addEventListener('change', updateCalc);
 updateCalc();
 
 /* ══════════════════════ ROLE SWITCHER ══════════════════════════════════════ */
