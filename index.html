@@ -690,24 +690,39 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .landlord-features li { display:flex; align-items:center; gap:12px; font-size:0.93rem; }
 .lf-icon { font-size:1.3rem; flex-shrink:0; }
 
-/* ══════════════════════ CALC CONTRACT CHECKBOX ══════════════════════════════ */
+/* ══════════════════════ CALCULATOR REDESIGN ═════════════════════════════════ */
+.calc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+@media(max-width:700px){ .calc-wrap{ grid-template-columns:1fr; gap:28px; } }
+.calc-val-display {
+  display:block; width:100%; background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1); border-radius:10px;
+  padding:13px 16px; font-size:1.25rem; font-weight:600; color:#fff;
+  margin-bottom:10px; pointer-events:none;
+}
 .calc-contract-wrap {
   display:flex; align-items:center; gap:12px; cursor:pointer;
   padding:14px 16px; background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08); border-radius:10px; user-select:none;
+  border:1px solid rgba(255,255,255,0.08); border-radius:10px; user-select:none; margin-top:4px;
 }
 .calc-contract-wrap:has(input:checked){ border-color:rgba(255,107,0,0.35); background:rgba(255,107,0,0.06); }
 .calc-contract-wrap input[type=checkbox]{ width:18px;height:18px;accent-color:var(--primary);cursor:pointer;flex-shrink:0; }
 .calc-contract-lbl { font-size:0.88rem;font-weight:500; }
 .calc-contract-sub { font-size:0.72rem;color:var(--muted);margin-top:2px; }
-.calc-rows { display:flex;flex-direction:column;gap:10px;margin-top:20px;border-top:1px solid rgba(255,107,0,0.1);padding-top:20px; }
-.calc-row { display:flex;justify-content:space-between;align-items:center; }
-.calc-row-lbl { font-size:0.8rem;color:var(--muted); }
-.calc-row-val { font-family:'Bebas Neue';font-size:1.3rem;color:var(--text); }
-.calc-row-val.minus { color:#ff6b6b; }
-.calc-row.total { border-top:1px solid rgba(255,255,255,0.1);padding-top:10px;margin-top:4px; }
-.calc-row.total .calc-row-lbl { color:var(--text);font-weight:600;font-size:0.88rem; }
-.calc-row.total .calc-row-val { font-size:1.8rem;color:var(--primary); }
+.fb-row {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px; padding:12px 16px;
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
+}
+.fb-row-lbl { font-size:0.82rem; color:var(--muted); line-height:1.35; }
+.fb-row-val { font-family:'Bebas Neue'; font-size:1.25rem; color:var(--text); white-space:nowrap; margin-left:12px; }
+.calc-payout-btn {
+  width:100%; background:var(--primary); color:#fff; border-radius:12px;
+  padding:18px 20px; display:flex; justify-content:space-between; align-items:center;
+  margin-top:10px; cursor:default;
+}
+.calc-payout-label { font-size:0.95rem; font-weight:600; }
+.calc-payout-val { font-family:'Bebas Neue'; font-size:1.8rem; letter-spacing:1px; }
+.calc-formula { font-size:0.72rem; color:var(--muted); margin-top:12px; line-height:1.6; }
 
 /* ═══════════════════════════════ HOW TO START ══════════════════════════════ */
 #steps { background: var(--bg2); }
@@ -1381,58 +1396,60 @@ footer {
 <!-- ═══════════════════════════ CALCULATOR ════════════════════════════════ -->
 <section id="calculator" class="section">
   <div class="container">
-    <div class="tag" data-i18n="tag_calc">Заработок</div>
-    <h2 class="section-title" data-i18n="calc_title">Калькулятор дохода</h2>
+    <div class="tag">🧮 Калькулятор</div>
+    <h2 class="section-title">Калькулятор выплаты</h2>
     <div class="calc-wrap">
+
+      <!-- Controls -->
       <div class="calc-controls reveal">
         <div class="slider-group">
-          <label>
-            <span data-i18n="calc_days_label">Дней в неделю</span>
-            <span class="slider-val" id="daysVal">5</span>
-          </label>
-          <input type="range" id="daysSlider" min="1" max="7" value="5">
+          <label>Чистая прибыль в приложении за неделю (€)</label>
+          <span class="calc-val-display" id="grossDisplay">600 €</span>
+          <input type="range" id="grossSlider" min="100" max="2000" step="10" value="600">
         </div>
-        <div class="slider-group">
-          <label>
-            <span data-i18n="calc_hours_label">Часов в день</span>
-            <span class="slider-val" id="hoursVal">8</span>
-          </label>
-          <input type="range" id="hoursSlider" min="4" max="16" value="8">
+        <div class="slider-group" style="margin-top:20px;">
+          <label>Наличные, забранные за неделю (€)</label>
+          <span class="calc-val-display" id="cashDisplay">0 €</span>
+          <input type="range" id="cashSlider" min="0" max="500" step="10" value="0">
         </div>
-        <label class="calc-contract-wrap" style="margin-top:8px;">
+        <label class="calc-contract-wrap">
           <input type="checkbox" id="contractCheck">
           <div>
-            <div class="calc-contract-lbl">📄 Официальный договор</div>
-            <div class="calc-contract-sub">Trудоустройство — 15€/нед · официальный статус</div>
+            <div class="calc-contract-lbl">Работа по официальному договору (15€/нед)</div>
+            <div class="calc-contract-sub">Официальный статус занятости · подтверждение для Úradu práce</div>
           </div>
         </label>
-        <p class="calc-note" style="margin-top:12px;">* Примерный расчёт. Реальный доход зависит от города и активности.</p>
       </div>
 
+      <!-- Result -->
       <div class="calc-result reveal">
-        <div class="calc-main-label" data-i18n="calc_weekly">Выплата на карту за неделю</div>
-        <div class="calc-main-val">
-          <span id="weeklyVal">552</span><span class="calc-main-currency">€</span>
+        <div class="fb-row">
+          <span class="fb-row-lbl">Комиссия парка (8%)</span>
+          <span class="fb-row-val" id="calcFee">€48</span>
         </div>
-        <div class="calc-rows">
-          <div class="calc-row">
-            <span class="calc-row-lbl">Валовой заработок</span>
-            <span class="calc-row-val" id="calcGross">600€</span>
-          </div>
-          <div class="calc-row">
-            <span class="calc-row-lbl">Комиссия парка 8%</span>
-            <span class="calc-row-val minus" id="calcFee">-48€</span>
-          </div>
-          <div class="calc-row" id="calcContractRow" style="display:none">
-            <span class="calc-row-lbl">Официальный договор</span>
-            <span class="calc-row-val minus">-15€</span>
-          </div>
-          <div class="calc-row total">
-            <span class="calc-row-lbl">Выплата на карту</span>
-            <span class="calc-row-val" id="calcNet">552€</span>
-          </div>
+        <div class="fb-row" id="calcContractRow" style="display:none">
+          <span class="fb-row-lbl">Офиц. договор (15€)</span>
+          <span class="fb-row-val">€15</span>
         </div>
+        <div class="fb-row">
+          <span class="fb-row-lbl">База для перевода (после 8%, наличных и договора)</span>
+          <span class="fb-row-val" id="calcBase">€552</span>
+        </div>
+        <div class="fb-row">
+          <span class="fb-row-lbl">Налог на перевод (0,4%)</span>
+          <span class="fb-row-val" id="calcTax">€2.21</span>
+        </div>
+        <div class="fb-row">
+          <span class="fb-row-lbl">Наличные (вычитаются)</span>
+          <span class="fb-row-val" id="calcCash">€0</span>
+        </div>
+        <div class="calc-payout-btn">
+          <span class="calc-payout-label">Выплата на карту</span>
+          <span class="calc-payout-val" id="calcNet">€549,79</span>
+        </div>
+        <p class="calc-formula">Формула: (прибыль в приложении − 8% − наличные − 15€ (если договор)) − 0,4%</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -2148,22 +2165,26 @@ async function submitContactForm(e) {
 
 /* ══════════════════════ INCOME CALCULATOR ══════════════════════════════════ */
 function updateCalc() {
-  const days     = parseInt(document.getElementById('daysSlider').value);
-  const hours    = parseInt(document.getElementById('hoursSlider').value);
+  const gross    = parseInt(document.getElementById('grossSlider').value);
+  const cash     = parseInt(document.getElementById('cashSlider').value);
   const contract = document.getElementById('contractCheck').checked;
-  const gross    = Math.round(days * hours * 15);
   const fee      = Math.round(gross * 0.08);
-  const net      = gross - fee - (contract ? 15 : 0);
-  document.getElementById('daysVal').textContent      = days;
-  document.getElementById('hoursVal').textContent     = hours;
-  document.getElementById('weeklyVal').textContent    = net;
-  document.getElementById('calcGross').textContent    = gross + '€';
-  document.getElementById('calcFee').textContent      = '−' + fee + '€';
-  document.getElementById('calcNet').textContent      = net + '€';
+  const contractFee = contract ? 15 : 0;
+  const base     = gross - fee - cash - contractFee;
+  const tax      = +(base * 0.004).toFixed(2);
+  const net      = +(base - tax).toFixed(2);
+  const fmt = v => '€' + v.toLocaleString('de-DE', {minimumFractionDigits: v % 1 ? 2 : 0, maximumFractionDigits: 2});
+  document.getElementById('grossDisplay').textContent = gross + ' €';
+  document.getElementById('cashDisplay').textContent  = cash + ' €';
+  document.getElementById('calcFee').textContent      = fmt(fee);
+  document.getElementById('calcBase').textContent     = fmt(base);
+  document.getElementById('calcTax').textContent      = fmt(tax);
+  document.getElementById('calcCash').textContent     = fmt(cash);
+  document.getElementById('calcNet').textContent      = fmt(net);
   document.getElementById('calcContractRow').style.display = contract ? 'flex' : 'none';
 }
-document.getElementById('daysSlider').addEventListener('input', updateCalc);
-document.getElementById('hoursSlider').addEventListener('input', updateCalc);
+document.getElementById('grossSlider').addEventListener('input', updateCalc);
+document.getElementById('cashSlider').addEventListener('input', updateCalc);
 document.getElementById('contractCheck').addEventListener('change', updateCalc);
 updateCalc();
 
