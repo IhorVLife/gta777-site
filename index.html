@@ -428,31 +428,31 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
   border: 1px solid rgba(255,255,255,0.06);
   transition: transform 0.35s, box-shadow 0.35s;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
-.city-photo-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+.city-photo-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
 .city-photo-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  background: linear-gradient(to right, rgba(10,10,26,0.92) 0%, rgba(10,10,26,0.55) 45%, rgba(10,10,26,0) 80%);
   pointer-events: none;
 }
 .city-card-content {
   position: relative;
   z-index: 1;
-  padding: 14px 14px 16px;
-  width: 100%;
+  padding: 0 18px;
+  max-width: 70%;
 }
 .city-name {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #fff;
-  margin-bottom: 2px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  margin-bottom: 4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
 }
 .city-sub {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.6);
   letter-spacing: 0.5px;
 }
 @media (max-width: 900px) {
@@ -1300,7 +1300,7 @@ footer {
             <div class="city-sub" data-i18n="city_kosice">Восток Словакии</div>
           </div>
         </div>
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1562137740-7b8945c0fcd3?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1560969184-10fe8719e047?w=700&q=80&auto=format&fit=crop')">
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏔 Banská Bystrica</div>
