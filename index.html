@@ -1124,21 +1124,12 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   align-items: center;
   gap: 8px;
 }
-.city-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.city-tag {
-  padding: 6px 14px;
-  background: rgba(255,107,0,0.08);
-  border: 1px solid rgba(255,107,0,0.25);
-  border-radius: 50px;
-  font-size: 0.85rem;
-  color: var(--text);
-  transition: var(--trans);
-}
-.city-tag:hover { background: rgba(255,107,0,0.18); border-color: var(--primary); }
+.slovakia-map { width: 100%; height: auto; display: block; margin-top: 10px; }
+.sk-country { fill: url(#skGrad); stroke: rgba(255,107,0,0.45); stroke-width: 1.5; stroke-linejoin: round; }
+.sk-dot { fill: var(--primary); stroke: rgba(255,255,255,0.85); stroke-width: 1.5; }
+.sk-label { fill: rgba(255,255,255,0.9); font-size: 10.5px; font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 0.3px; }
+.sk-pulse { fill: var(--primary); transform-box: fill-box; transform-origin: center; animation: skPulse 2.8s ease-out infinite; }
+@keyframes skPulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(3.8); opacity: 0; } }
 .contacts-main-cta { text-align: center; margin-top: 52px; }
 
 /* ═══════════════════════════════ FOOTER ════════════════════════════════════ */
@@ -1830,7 +1821,7 @@ footer {
           <span class="contact-btn-icon">📞</span>
           <div class="contact-btn-text">
             <strong>+421 952 637 794</strong>
-            <span>Звонок · пн–вс 8:00–22:00</span>
+            <span>Звонок · пн–вс 9:00–20:00</span>
           </div>
         </a>
         <a href="https://wa.me/421952637794" target="_blank" rel="noopener" class="contact-btn wa">
@@ -1850,15 +1841,44 @@ footer {
       </div>
       <div class="map-card reveal">
         <div class="map-card-title">📍 <span data-i18n="contacts_cities">Города присутствия</span></div>
-        <div class="city-list">
-          <span class="city-tag">🏙 Bratislava</span>
-          <span class="city-tag">🏙 Žilina</span>
-          <span class="city-tag">🏙 Košice</span>
-          <span class="city-tag">🏙 Banská Bystrica</span>
-          <span class="city-tag">🏙 Prešov</span>
-          <span class="city-tag">🏙 Nitra</span>
-          <span class="city-tag">🏙 Trnava</span>
-        </div>
+        <svg class="slovakia-map" viewBox="0 0 480 192" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="skGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(255,107,0,0.14)"/>
+              <stop offset="100%" style="stop-color:rgba(255,107,0,0.04)"/>
+            </linearGradient>
+          </defs>
+          <!-- Slovakia outline -->
+          <path class="sk-country" d="M 24,148 L 28,122 L 46,92 L 80,65 L 128,48 L 174,36 L 220,33 L 262,35 L 300,38 L 332,41 L 364,48 L 394,60 L 426,78 L 448,102 L 445,130 L 431,150 L 401,161 L 353,165 L 298,166 L 242,164 L 186,159 L 140,154 L 98,149 L 60,147 L 36,147 Z"/>
+          <!-- Bratislava -->
+          <circle class="sk-pulse" cx="31" cy="148" r="5" style="animation-delay:0s"/>
+          <circle class="sk-dot" cx="31" cy="148" r="4"/>
+          <text class="sk-label" x="40" y="153">Bratislava</text>
+          <!-- Trnava -->
+          <circle class="sk-pulse" cx="76" cy="140" r="5" style="animation-delay:0.4s"/>
+          <circle class="sk-dot" cx="76" cy="140" r="4"/>
+          <text class="sk-label" text-anchor="middle" x="76" y="129">Trnava</text>
+          <!-- Nitra -->
+          <circle class="sk-pulse" cx="114" cy="150" r="5" style="animation-delay:0.8s"/>
+          <circle class="sk-dot" cx="114" cy="150" r="4"/>
+          <text class="sk-label" text-anchor="middle" x="114" y="168">Nitra</text>
+          <!-- Žilina -->
+          <circle class="sk-pulse" cx="166" cy="73" r="5" style="animation-delay:1.2s"/>
+          <circle class="sk-dot" cx="166" cy="73" r="4"/>
+          <text class="sk-label" text-anchor="middle" x="166" y="62">Žilina</text>
+          <!-- Banská Bystrica -->
+          <circle class="sk-pulse" cx="214" cy="133" r="5" style="animation-delay:1.6s"/>
+          <circle class="sk-dot" cx="214" cy="133" r="4"/>
+          <text class="sk-label" text-anchor="middle" x="214" y="121">B. Bystrica</text>
+          <!-- Prešov -->
+          <circle class="sk-pulse" cx="374" cy="96" r="5" style="animation-delay:2.0s"/>
+          <circle class="sk-dot" cx="374" cy="96" r="4"/>
+          <text class="sk-label" text-anchor="end" x="365" y="86">Prešov</text>
+          <!-- Košice -->
+          <circle class="sk-pulse" cx="394" cy="138" r="5" style="animation-delay:2.4s"/>
+          <circle class="sk-dot" cx="394" cy="138" r="4"/>
+          <text class="sk-label" text-anchor="middle" x="394" y="157">Košice</text>
+        </svg>
       </div>
     </div>
     <div class="contact-form-block reveal">
