@@ -414,57 +414,58 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 
 /* City photo cards */
 .city-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 .city-photo-card {
   position: relative;
-  height: 260px;
-  border-radius: 18px;
-  background-size: cover;
-  background-position: center;
+  height: 190px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.06);
   transition: transform 0.35s, box-shadow 0.35s;
   display: flex;
   align-items: center;
 }
-.city-photo-card:hover { transform: translateY(-5px) scale(1.015); box-shadow: 0 24px 60px rgba(0,0,0,0.7); }
+.city-photo-card:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+.city-banner-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.5s ease;
+}
+.city-photo-card:hover .city-banner-bg { transform: scale(1.04); }
 .city-photo-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(10,10,26,0.88) 0%, rgba(10,10,26,0.45) 50%, rgba(10,10,26,0) 85%);
+  background: linear-gradient(90deg, rgba(10,10,26,0.94) 40%, rgba(10,10,26,0.12) 100%);
   pointer-events: none;
 }
 .city-card-content {
   position: relative;
   z-index: 1;
-  padding: 0 28px;
-  max-width: 55%;
+  padding: 0 clamp(24px, 4vw, 52px);
 }
 .city-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   color: #fff;
   margin-bottom: 6px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.9);
   line-height: 1;
 }
 .city-sub {
   font-size: 0.78rem;
   color: rgba(255,255,255,0.6);
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 @media (max-width: 900px) {
   .fleet-cards { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
-  .city-cards  { grid-template-columns: repeat(2, 1fr); }
-  .city-photo-card { height: 200px; }
   .fleet-photo-card { height: 180px; }
+  .city-photo-card { height: 160px; }
 }
 @media (max-width: 480px) {
-  .city-cards { grid-template-columns: 1fr; }
-  .city-photo-card { height: 180px; }
+  .city-photo-card { height: 140px; }
 }
 
 /* ═══════════════════════════════ BENEFITS ══════════════════════════════════ */
@@ -1313,28 +1314,32 @@ footer {
     <div class="gallery-block reveal">
       <div class="gallery-label" data-i18n="gallery_slovakia">Работаем по всей Словакии</div>
       <div class="city-cards">
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1620283110809-3ff3adfe057b?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card">
+          <div class="city-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1620283110809-3ff3adfe057b?w=1200&q=80&auto=format&fit=crop')"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏰 Bratislava</div>
             <div class="city-sub" data-i18n="city_capital">Столица Словакии</div>
           </div>
         </div>
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1756228626280-337f9a5f17b2?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card">
+          <div class="city-banner-bg" style="background-image:url('city-zilina.jpg')"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">⛰ Žilina</div>
             <div class="city-sub" data-i18n="city_zilina">Север Словакии</div>
           </div>
         </div>
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1738686001611-39b03de57797?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card">
+          <div class="city-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1738686001611-39b03de57797?w=1200&q=80&auto=format&fit=crop')"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏛 Košice</div>
             <div class="city-sub" data-i18n="city_kosice">Восток Словакии</div>
           </div>
         </div>
-        <div class="city-photo-card" style="background-image:url('https://images.unsplash.com/photo-1590052753800-95fc29de0b80?w=700&q=80&auto=format&fit=crop')">
+        <div class="city-photo-card">
+          <div class="city-banner-bg" style="background-image:url('city-bb.jpg'); background-position: center 30%"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏔 Banská Bystrica</div>
