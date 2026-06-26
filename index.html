@@ -2217,10 +2217,10 @@ async function submitContactForm(e) {
   if (btn) { btn.disabled = true; }
   const text = `📋 <b>Заявка с сайта Trojan Fleet</b>\n\n👤 <b>Имя:</b> ${name}\n📱 <b>Телефон:</b> ${phone}${msg ? '\n💬 <b>Сообщение:</b> ' + msg : ''}`;
   try {
-    await fetch('https://api.telegram.org/bot8771741558:AAHX7s0P4awAp1aLzQaviE8Mis6-t5zXYPo/sendMessage', {
+    await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: -1004360504894, text, parse_mode: 'HTML' })
+      body: JSON.stringify({ name, phone, msg })
     });
   } catch(err) { console.error('Contact form error:', err); }
   document.getElementById('contactForm').style.display = 'none';
