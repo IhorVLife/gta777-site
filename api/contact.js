@@ -1,7 +1,6 @@
 const ALLOWED_ORIGINS = [
   'https://www.trojanfleet.sk',
   'https://trojanfleet.sk',
-  'https://gta777-site.vercel.app',
 ];
 
 function escapeHtml(str) {
@@ -15,13 +14,16 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
   const origin = req.headers.origin || '';
-  const isAllowed = ALLOWED_ORIGINS.some(o => origin === o) ||
-    origin.endsWith('.vercel.app');
-  if (!isAllowed) return res.status(403).json({ ok: false, error: 'Forbidden' });
+  if (!ALLOWED_ORIGINS.includes(origin)) {
+    return res.status(403).json({ ok: false, error: 'Forbidden' });
+  }
 
   res.setHeader('Access-Control-Allow-Origin', origin);
 
-  const { name, phone, msg } = req.body || {};
+  const { name, phone, msg, website } = req.body || {};
+
+  // honeypot: bots fill hidden fields, humans don't
+  if (website) return res.status(200).json({ ok: true });
 
   if (!name || !phone) {
     return res.status(400).json({ ok: false, error: 'Name and phone are required' });

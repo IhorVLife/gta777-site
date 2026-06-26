@@ -1934,6 +1934,7 @@ footer {
                data-i18n-ph="form_ph_phone" placeholder="+421 900 000 000">
         <textarea           id="cf-message" name="message" class="cf-input cf-textarea" rows="3" maxlength="1000"
                data-i18n-ph="form_ph_msg" placeholder="Сообщение (необязательно)"></textarea>
+        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
         <button type="submit" class="btn btn-primary cf-submit" data-i18n="form_submit">Отправить заявку →</button>
       </form>
       <div class="cf-success" id="cfSuccess" style="display:none">
@@ -2256,17 +2257,17 @@ function toggleFaq(btn) {
 /* ══════════════════════ CONTACT FORM ═══════════════════════════════════════ */
 async function submitContactForm(e) {
   e.preventDefault();
-  const name  = document.getElementById('cf-name').value.trim();
-  const phone = document.getElementById('cf-phone').value.trim();
-  const msg   = document.getElementById('cf-message').value.trim();
-  const btn   = document.querySelector('.cf-submit');
+  const name    = document.getElementById('cf-name').value.trim();
+  const phone   = document.getElementById('cf-phone').value.trim();
+  const msg     = document.getElementById('cf-message').value.trim();
+  const website = document.getElementById('cf-website').value;
+  const btn     = document.querySelector('.cf-submit');
   if (btn) { btn.disabled = true; }
-  const text = `📋 <b>Заявка с сайта Trojan Fleet</b>\n\n👤 <b>Имя:</b> ${name}\n📱 <b>Телефон:</b> ${phone}${msg ? '\n💬 <b>Сообщение:</b> ' + msg : ''}`;
   try {
     await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, msg })
+      body: JSON.stringify({ name, phone, msg, website })
     });
   } catch(err) { console.error('Contact form error:', err); }
   document.getElementById('contactForm').style.display = 'none';
