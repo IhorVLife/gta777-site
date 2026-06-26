@@ -3,8 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Trojan Fleet — таксопарк Словакия. Крупнейшее сообщество водителей. Работа на Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник.">
+<meta name="description" content="Trojan Fleet — таксопарк Словакия. Работа на Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник. Города: Братислава, Жилина, Банска Быстрица.">
 <title>Trojan Fleet — Taxi Fleet Slovakia | Bolt & Uber</title>
+<link rel="canonical" href="https://www.trojanfleet.sk/">
+<link rel="icon" type="image/webp" href="/logo.webp">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://www.trojanfleet.sk/">
+<meta property="og:title"       content="Trojan Fleet — Таксопарк Словакия">
+<meta property="og:description" content="Работа на Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник. Братислава, Жилина, Банска Быстрица.">
+<meta property="og:image"       content="https://www.trojanfleet.sk/logo-dark.webp">
+<meta property="og:locale"      content="ru_RU">
+<meta property="og:site_name"   content="Trojan Fleet">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Trojan Fleet — Таксопарк Словакия">
+<meta name="twitter:description" content="Работа на Bolt, Uber, Bolt Food. Комиссия 8%, выплаты каждый понедельник.">
+<meta name="twitter:image"       content="https://www.trojanfleet.sk/logo-dark.webp">
+
+<!-- Schema.org LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Trojan Fleet",
+  "description": "Таксопарк Словакия. Работа на Bolt, Uber, Bolt Food.",
+  "url": "https://www.trojanfleet.sk",
+  "logo": "https://www.trojanfleet.sk/logo.webp",
+  "telephone": "+421952637794",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "SK"
+  },
+  "areaServed": ["Bratislava", "Žilina", "Banská Bystrica"],
+  "sameAs": ["https://t.me/gta777_drivers_bot"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1210,7 +1247,10 @@ footer {
 <header>
   <div class="container header-inner">
     <a href="#" class="logo-wrap">
-      <img src="logo.png" alt="Trojan Fleet" class="logo-img">
+      <picture>
+        <source srcset="logo.webp" type="image/webp">
+        <img src="logo.png" alt="Trojan Fleet" class="logo-img" width="140" height="40">
+      </picture>
     </a>
     <nav>
       <a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
@@ -1263,7 +1303,10 @@ footer {
       <span>🏎</span>
       <span data-i18n="hero_badge">Таксопарк · Словакия</span>
     </div>
-    <img src="logo-dark.jpg" class="hero-logo-img reveal" alt="Trojan Fleet">
+    <picture>
+      <source srcset="logo-dark.webp" type="image/webp">
+      <img src="logo-dark.jpg" class="hero-logo-img reveal" alt="Trojan Fleet" width="400" height="400" fetchpriority="high">
+    </picture>
     <div class="hero-tagline reveal" data-i18n="hero_tagline">Работай на своих условиях</div>
     <div class="hero-sub reveal">
       <span data-i18n="hero_sub">Bolt • Uber • Bolt Food | Комиссия <strong>8%</strong> | Выплаты каждый понедельник</span>
@@ -1314,7 +1357,7 @@ footer {
           </div>
         </div>
         <div class="city-photo-card">
-          <div class="city-banner-bg" style="background-image:url('city-zilina.jpg')"></div>
+          <div class="city-banner-bg" style="background-image:url('city-zilina.webp')"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">⛰ Žilina</div>
@@ -1330,7 +1373,7 @@ footer {
           </div>
         </div>
         <div class="city-photo-card">
-          <div class="city-banner-bg" style="background-image:url('city-bb.jpg'); background-position: center 30%"></div>
+          <div class="city-banner-bg" style="background-image:url('city-bb.webp'); background-position: center 30%"></div>
           <div class="city-photo-overlay"></div>
           <div class="city-card-content">
             <div class="city-name">🏔 Banská Bystrica</div>
@@ -1885,11 +1928,11 @@ footer {
       <h3 class="contact-form-title" data-i18n="form_title">Оставить заявку</h3>
       <p class="contact-form-sub" data-i18n="form_sub">Заполните форму — менеджер свяжется с вами в течение 30 минут</p>
       <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event)">
-        <input type="text"  id="cf-name"    name="name"    class="cf-input" required
+        <input type="text"  id="cf-name"    name="name"    class="cf-input" required maxlength="100"
                data-i18n-ph="form_ph_name" placeholder="Ваше имя">
-        <input type="tel"   id="cf-phone"   name="phone"   class="cf-input" required
+        <input type="tel"   id="cf-phone"   name="phone"   class="cf-input" required maxlength="30"
                data-i18n-ph="form_ph_phone" placeholder="+421 900 000 000">
-        <textarea           id="cf-message" name="message" class="cf-input cf-textarea" rows="3"
+        <textarea           id="cf-message" name="message" class="cf-input cf-textarea" rows="3" maxlength="1000"
                data-i18n-ph="form_ph_msg" placeholder="Сообщение (необязательно)"></textarea>
         <button type="submit" class="btn btn-primary cf-submit" data-i18n="form_submit">Отправить заявку →</button>
       </form>
@@ -1910,7 +1953,10 @@ footer {
 <footer>
   <div class="container footer-inner">
     <div class="footer-logo-wrap">
-      <img src="logo.png" alt="Trojan Fleet" class="logo-img footer-logo-img">
+      <picture>
+        <source srcset="logo.webp" type="image/webp">
+        <img src="logo.png" alt="Trojan Fleet" class="logo-img footer-logo-img" loading="lazy" width="140" height="40">
+      </picture>
     </div>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 Trojan Fleet. Таксопарк Словакия.</div>
     <div class="footer-langs">
